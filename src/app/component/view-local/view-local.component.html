@@ -1,0 +1,28 @@
+<p-card *ngIf= 'local$ | async as data' class="mainCard" [style]="{ width: '600px' , height: '600px', overflow: 'hidden'}" >
+    <div class="grid">
+        <div class="detalhes2 parte texto">
+            <div>
+                <p>Nome do planeta:</p>
+                <p><b>{{data.name}}</b></p>
+            </div>
+        </div>
+        <div class="detalhes1 parte texto">
+            <div>
+                <p>Tipo:</p> 
+                <p><b> {{ data.type}}</b></p>
+            </div>
+        </div>
+        <div class="parte texto">
+            <div>
+                <p>Dimensão:</p> 
+                <p><b>{{data.dimension}}</b></p>
+            </div>
+        </div>
+        <div class="detalhes2 parte texto">
+            <div>
+                <p>Quantidade de moradores:</p>
+                <p><b>{{data.residents.length}}</b></p>
+            </div>
+        </div>
+    </div>
+</p-card>

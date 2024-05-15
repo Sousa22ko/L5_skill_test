@@ -1,5 +1,5 @@
 import { Iinfo } from "./Iinfo.model";
-import { responseType } from "./ResponseType";
+import { responseType } from "./Iresponse.model";
 
 export interface IDataPayload {
     info : Iinfo,
