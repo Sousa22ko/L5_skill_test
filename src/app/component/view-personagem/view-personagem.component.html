@@ -1,0 +1,28 @@
+<p-card *ngIf= 'personagem$ | async as data' class="mainCard" [style]="{ width: '600px' , height: '600px', overflow: 'hidden'}" >
+    <div class="grid">
+        <div class="foto parte">
+            <img [src]="data.image" [alt]="data.name" />
+        </div>
+        <div class="nome parte texto">
+            <div>
+                <p>Meu nome é:</p>
+                <p><b>{{data.name}}</b></p>
+            </div>
+        </div>
+        <div class="detalhes1 parte texto">
+            <div>
+                <p>Status: <b>{{data.status}}</b></p>
+                <p>Espécie: <b>{{data.species}}</b></p>
+                <p>Gênero: <b>{{data.gender}}</b></p>
+                <p>Tipo: <b>{{data.type}}</b></p>
+            </div>
+        </div>
+        <div class="detalhes2 parte texto">
+            <div>
+                <p>Planeta de origem: <b><p-button severity="contrast">{{data.origin.name}}</p-button></b></p>
+                <p>Localização atual: <b><p-button severity="contrast">{{data.origin.name}}</p-button></b></p>
+                <p>Quantidade de episódios: <b>{{data.episode.length}}</b></p>
+            </div>
+        </div>
+    </div>
+</p-card>

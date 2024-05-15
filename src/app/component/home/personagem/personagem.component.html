@@ -1,5 +1,5 @@
-<ng-container *ngIf="personagens$ | async as dados">
-    <p-card *ngFor="let item of dados.results" class="card">
+<ng-container *ngIf="personagens$ | async as dados"> 
+    <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)">
         <div class="linhaCard" >
             <div>
                 <img [src]="item.image" [alt]="item.name" />

@@ -16,4 +16,8 @@ export class RAMServiceService {
   getPersonagens(pageNumber: number): Observable<IDataPayload>{
     return this.httpClient.get<IDataPayload>(`${BASEURL}/character/?page=${pageNumber}`);
   }
+
+  getPersonagem(id: number): Observable<Personagem> {
+    return this.httpClient.get<Personagem>(`${BASEURL}/character/${id}`)
+  }
 }
