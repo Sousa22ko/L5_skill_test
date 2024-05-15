@@ -1,0 +1,41 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    min-height: 100%;
+
+    .parte {
+        align-content: center;
+        max-width: 300px;
+        max-height: 300px;
+    }
+
+    .texto {
+        padding-left: 20px;
+    }
+
+    .detalhes2 {
+        background-color: #9ad052;
+        b {
+            color: rgba(255, 255, 255, 0.87);
+        }
+    }
+}
+
+b {
+    color: #9ad052;
+}
+
+.mainCard {
+    max-width: 600px;
+    max-height: 600px;
+    text-align: -webkit-center;
+}
+
+::ng-deep {
+    .p-card-body, .p-card-content {
+        padding: 0px;
+        min-height: 100% !important;
+        height: 100%;
+    }
+}

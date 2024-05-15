@@ -5,6 +5,7 @@ import { RAMServiceService } from '../../../service/ramservice.service';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-locais',
@@ -18,12 +19,12 @@ export class LocaisComponent {
   locais$: Observable<IDataPayload>;
   pagina: number = 0;
 
-  constructor(private service: RAMServiceService) {
+  constructor(private service: RAMServiceService, private router: Router) {
     this.locais$ = this.service.getLocais(this.pagina);
   }
 
-  goto(id: number) {
-
+  // vai para a pagina de detalhes do local
+  goto(id: number): void {
+    this.router.navigate([`/local/${id}`]);
   }
-
 }

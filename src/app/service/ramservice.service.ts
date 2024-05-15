@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ipersonagem } from '../model/Ipersonagem.model';
 import { IDataPayload } from '../model/IdataPayload.model';
+import { Ilocation } from '../model/Ilocation.model';
 
 const BASEURL = 'https://rickandmortyapi.com/api';
 
@@ -23,5 +24,9 @@ export class RAMServiceService {
 
   getLocais(pageNumber: number): Observable<IDataPayload>{
     return this.httpClient.get<IDataPayload>(`${BASEURL}/location/?page=${pageNumber}`);
+  }
+
+  getLocal(id: number): Observable<Ilocation> {
+    return this.httpClient.get<Ilocation>(`${BASEURL}/location/${id}`)
   }
 }
