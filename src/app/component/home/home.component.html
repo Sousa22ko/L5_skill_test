@@ -1,5 +1,5 @@
 <p-panel header="Header">
-    <p-tabView [activeIndex]="1">
+    <p-tabView [activeIndex]="2">
         <p-tabPanel header="Personagens">
             <ng-template pTemplate="content"> <!-- lazy-load -->
                 <app-personagem></app-personagem>
@@ -12,9 +12,7 @@
         </p-tabPanel>
         <p-tabPanel header="Episódios">
             <ng-template pTemplate="content"> <!-- lazy-load -->
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+                <app-episodios></app-episodios>
             </ng-template>
         </p-tabPanel>
     </p-tabView>

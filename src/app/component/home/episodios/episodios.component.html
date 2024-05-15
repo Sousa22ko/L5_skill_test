@@ -1,0 +1,18 @@
+<ng-container *ngIf="episodios$ | async as dados"> 
+    <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)">
+        <div class="linhaCard">
+            <div class="data">
+                <div class="nome"><p><b>Nome do episódio:</b></p>{{ item.name }}</div>
+            </div>
+            <div class="data">
+                <div class="tipo"><p><b>Data de lançamento:</b></p>{{ item.type }}</div>
+            </div>
+            <div class="data">
+                <div class="tipo"><p><b>Dimensão:</b></p>{{ item.dimension }}</div>
+            </div>
+            <div class="botoes">
+                <p-button label="Visualizar informações" severity="contrast"/> 
+            </div>
+        </div>
+    </p-card>
+</ng-container>

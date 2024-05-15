@@ -3,6 +3,7 @@ import { PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
 import { PersonagemComponent } from './personagem/personagem.component';
 import { LocaisComponent } from './locais/locais.component';
+import { EpisodiosComponent } from './episodios/episodios.component';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import { LocaisComponent } from './locais/locais.component';
     PanelModule, 
     TabViewModule, 
     PersonagemComponent,
-    LocaisComponent
+    LocaisComponent,
+    EpisodiosComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

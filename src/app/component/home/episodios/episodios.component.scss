@@ -1,0 +1,39 @@
+.card {
+    padding: 10px;
+
+    b {
+        color: var(--themecolor);
+    }
+
+    &:hover {
+        cursor: pointer;
+        transition: all 0.3s;
+        filter: brightness(120%);
+
+        ::ng-deep { // não aplica o brilho aos componentes do card
+            img, .botoes, .data {
+                transition: all 0.3s;
+                filter: brightness(80%);
+            }
+
+        }
+    }
+
+    .linhaCard {
+        display: grid;
+        grid-template-columns: 3fr 3fr 3fr 3fr;
+    
+        .data, .botoes {
+            align-content: center;
+            padding-right: 30px;
+        }
+    
+        .botoes {
+            grid-column-end: none;
+        }
+    
+        .nome {
+            margin-left: 20px;
+        }
+    }
+}

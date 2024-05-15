@@ -29,4 +29,12 @@ export class RAMServiceService {
   getLocal(id: number): Observable<Ilocation> {
     return this.httpClient.get<Ilocation>(`${BASEURL}/location/${id}`)
   }
+
+  getEpisodios(pageNumber: number): Observable<IDataPayload>{
+    return this.httpClient.get<IDataPayload>(`${BASEURL}/episode/?page=${pageNumber}`);
+  }
+
+  getEpisodio(id: number): Observable<Ilocation> {
+    return this.httpClient.get<Ilocation>(`${BASEURL}/episode/${id}`)
+  }
 }
