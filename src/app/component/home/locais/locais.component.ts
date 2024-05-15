@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDataPayload } from '../../../model/IdataPayload.model';
+import {  IdataPayloadLocalizacao } from '../../../model/IdataPayloadLocalizacao.model';
 import { RAMServiceService } from '../../../service/ramservice.service';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class LocaisComponent {
 
-  locais$: Observable<IDataPayload>;
+  locais$: Observable<IdataPayloadLocalizacao>;
   pagina: number = 0;
 
   constructor(private service: RAMServiceService, private router: Router) {

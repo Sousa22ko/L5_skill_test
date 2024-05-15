@@ -5,8 +5,8 @@ import { RAMServiceService } from '../../../service/ramservice.service';
 import { ButtonModule } from 'primeng/button';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { IDataPayload } from '../../../model/IdataPayload.model';
 import { Router, RouterModule } from '@angular/router';
+import { IDataPayloadPersonagem } from '../../../model/IdataPayloadPersonagem.model';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class PersonagemComponent {
 
-  personagens$: Observable<IDataPayload>;
+  personagens$: Observable<IDataPayloadPersonagem>;
   pagina: number = 0;
 
   constructor(private service: RAMServiceService, private router: Router) {
