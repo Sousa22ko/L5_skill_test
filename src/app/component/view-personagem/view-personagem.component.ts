@@ -1,0 +1,31 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { RAMServiceService } from '../../service/ramservice.service';
+import { Personagem } from '../../model/personagem.model';
+import { Observable, map } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+
+@Component({
+  selector: 'app-view-personagem',
+  standalone: true,
+  imports: [ CommonModule, CardModule, ButtonModule ],
+  templateUrl: './view-personagem.component.html',
+  styleUrl: './view-personagem.component.scss'
+})
+export class ViewPersonagemComponent {
+
+  id: number = 0;
+  personagem$: Observable<Personagem>;
+  
+  constructor(private service: RAMServiceService, private router: ActivatedRoute) {
+    this.router.params.subscribe(res => {
+      this.id = res['id'];
+    })
+    this.personagem$ = this.service.getPersonagem(this.id);
+  }
+
+
+
+}
