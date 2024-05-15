@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Personagem } from '../model/personagem.model';
+import { Ipersonagem } from '../model/Ipersonagem.model';
 import { IDataPayload } from '../model/IdataPayload.model';
 
 const BASEURL = 'https://rickandmortyapi.com/api';
@@ -17,7 +17,11 @@ export class RAMServiceService {
     return this.httpClient.get<IDataPayload>(`${BASEURL}/character/?page=${pageNumber}`);
   }
 
-  getPersonagem(id: number): Observable<Personagem> {
-    return this.httpClient.get<Personagem>(`${BASEURL}/character/${id}`)
+  getPersonagem(id: number): Observable<Ipersonagem> {
+    return this.httpClient.get<Ipersonagem>(`${BASEURL}/character/${id}`)
+  }
+
+  getLocais(pageNumber: number): Observable<IDataPayload>{
+    return this.httpClient.get<IDataPayload>(`${BASEURL}/location/?page=${pageNumber}`);
   }
 }

@@ -1,4 +1,4 @@
-export interface Personagem {
+export interface Ipersonagem {
     id: number,	
     name: string,	
     status: string	
@@ -10,7 +10,8 @@ export interface Personagem {
     image: string 
     episode: []
     url: string
-    created: string
+    created: string,
+    dimension: string // corrigir
 }
 
 interface IOrigin {

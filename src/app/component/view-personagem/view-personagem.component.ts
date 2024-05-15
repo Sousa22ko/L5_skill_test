@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RAMServiceService } from '../../service/ramservice.service';
-import { Personagem } from '../../model/personagem.model';
+import { Ipersonagem } from '../../model/Ipersonagem.model';
 import { Observable, map } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -17,7 +17,7 @@ import { ButtonModule } from 'primeng/button';
 export class ViewPersonagemComponent {
 
   id: number = 0;
-  personagem$: Observable<Personagem>;
+  personagem$: Observable<Ipersonagem>;
   
   constructor(private service: RAMServiceService, private router: ActivatedRoute) {
     this.router.params.subscribe(res => {
