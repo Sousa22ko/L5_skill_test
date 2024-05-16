@@ -2,15 +2,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ipersonagem } from '../../model/Ipersonagem.model';
 import { Observable, map } from 'rxjs';
-import { CommonModule } from '@angular/common';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
 import { SpersonagemService } from '../../services/spersonagem.service';
+import { CommomComponentModule } from '../modules/commomComponent.module';
 
 @Component({
   selector: 'app-view-personagem',
   standalone: true,
-  imports: [ CommonModule, CardModule, ButtonModule ],
+  imports: [ CommomComponentModule ],
   templateUrl: './view-personagem.component.html',
   styleUrl: './view-personagem.component.scss'
 })

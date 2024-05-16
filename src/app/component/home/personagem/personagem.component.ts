@@ -1,33 +1,19 @@
 import { Component } from '@angular/core';
-import { CardModule } from 'primeng/card';
-
-import { ButtonModule } from 'primeng/button';
 import { Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { SpersonagemService } from '../../../services/spersonagem.service';
 import { IDataPayload } from '../../../model/IdataPayload.model';
 import { Ipersonagem } from '../../../model/Ipersonagem.model';
-import { AccordionModule } from 'primeng/accordion';
-import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
-import { PaginatorModule } from 'primeng/paginator';
+import { AdvancedComponentModule } from '../../modules/advancedComponent.module';
 
 
 @Component({
   selector: 'app-personagem',
   standalone: true,
   imports: [ 
-    CommonModule,
-    ButtonModule,
-    CardModule,
-    RouterModule,
-    AccordionModule,
-    InputTextModule,
-    FormsModule,
+    AdvancedComponentModule,
     DropdownModule,
-    PaginatorModule
   ],
   templateUrl: './personagem.component.html',
   styleUrl: './personagem.component.scss'

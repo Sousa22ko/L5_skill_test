@@ -1,16 +1,14 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
 import { Observable } from 'rxjs';
 import { Iepisodio } from '../../model/Iepisoido.model';
 import { ActivatedRoute } from '@angular/router';
 import { SepisodioService } from '../../services/sepisodio.service';
+import { CommomComponentModule } from '../modules/commomComponent.module';
 
 @Component({
   selector: 'app-view-episodio',
   standalone: true,
-  imports: [ CommonModule, CardModule, ButtonModule ],
+  imports: [ CommomComponentModule ],
   templateUrl: './view-episodio.component.html',
   styleUrl: './view-episodio.component.scss'
 })
