@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RAMServiceService } from '../../service/ramservice.service';
 import { Ipersonagem } from '../../model/Ipersonagem.model';
 import { Observable, map } from 'rxjs';
 import { CommonModule } from '@angular/common';

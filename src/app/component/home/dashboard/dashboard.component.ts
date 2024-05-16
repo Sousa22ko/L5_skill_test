@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import { Observable, forkJoin, map } from 'rxjs';
-import { RAMServiceService } from '../../../service/ramservice.service';
-import { IDataPayloadPersonagem } from '../../../model/IdataPayloadPersonagem.model';
+import { Observable, forkJoin } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { IdataPayloadLocalizacao } from '../../../model/IdataPayloadLocalizacao.model';
-import { IDataPayloadEpisodio } from '../../../model/IdataPayloadEpisodio.model';
 import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
 import { SpersonagemService } from '../../../services/spersonagem.service';
@@ -74,7 +70,7 @@ export class DashboardComponent {
   };
 
 
-  constructor(private service: RAMServiceService, private personagemS: SpersonagemService, private localizacaoS: SlocalizacaoService, private episodioS: SepisodioService) {
+  constructor(private personagemS: SpersonagemService, private localizacaoS: SlocalizacaoService, private episodioS: SepisodioService) {
     this.personagens$ = this.personagemS.getPersonagens(0);
     this.locais$ = this.localizacaoS.getLocais(0);
     this.episodios$ = this.episodioS.getEpisodios(this.pageEpisodes);

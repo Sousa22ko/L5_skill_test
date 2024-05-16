@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import {  IdataPayloadLocalizacao } from '../../../model/IdataPayloadLocalizacao.model';
-import { RAMServiceService } from '../../../service/ramservice.service';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
