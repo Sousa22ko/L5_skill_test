@@ -1,14 +1,55 @@
 <ng-container *ngIf="personagens$ | async as dados"> 
-    <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)">
+    <p-accordion class="filtroAccordion" [activeIndex]="activeIndex">
+        <p-accordionTab header="Filtros">
+            <div class="filtros">
+                <div class="item">
+                    <label> Nome: </label>
+                    <input type="text" pInputText [(ngModel)]="nomeFiltro" placeholder="Rick"/>
+                </div>
+                <div class="item">
+                    <label> Status: </label>
+                    <p-dropdown 
+                        [options]="status" 
+                        [(ngModel)]="statusFiltro" 
+                        optionLabel="name" 
+                        placeholder="Selecione o status da personagem" />
+                </div>
+                <div class="item">
+                    <label> Especie: </label>
+                    <input type="text" pInputText [(ngModel)]="specieFiltro" placeholder="Human"/>
+                </div>
+                <div class="item">
+                    <label> Tipo: </label>
+                    <input type="text" pInputText [(ngModel)]="typeFiltro" placeholder="Genetic experiment"/>
+                </div>
+                <div class="item">
+                    <label> Gênero: </label>
+                    <p-dropdown 
+                        [options]="gender" 
+                        [(ngModel)]="genderFiltro" 
+                        optionLabel="name" 
+                        placeholder="Selecione o gênero da personagem" />
+                </div>
+            </div>
+            <div class="actions">
+                <p-button (click)="limparFiltros()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Limpar filtros</p-button>
+                <p-button (click)="filtrar()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Filtrar</p-button>
+            </div>
+        </p-accordionTab>
+    </p-accordion>
+    <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)" [style]="{ height: '100px', overflow: 'hidden'}">
         <div class="linhaCard" >
             <div>
                 <img [src]="item.image" [alt]="item.name" />
             </div>
             <div class="data">
-                <div class="nome">{{ item.name }}</div>
+                <div class="nome"><p><b>Nome do Personagem:</b></p>{{ item.name }}</div>
             </div>
-            <div class="botoes">
-                <p-button label="Visualizar informações" /> 
+            <div class="data">
+                <div class="nome"><p><b>total de aparições:</b></p>{{ item.episode.length }}</div>
+            </div>
+            <div class="botoes" >
+                <p-button severity="success" label="Visualizar informações" /> 
             </div>
         </div>
     </p-card>

@@ -19,8 +19,23 @@
 
     .detalhes2 {
         background-color: #9ad052;
+        padding-left: 0px !important;
         b {
             color: rgba(255, 255, 255, 0.87);
+        }
+
+        .detalhes2Interno {
+            align-items: center;
+            place-content: center;
+
+            .detalhes2InternoLinha {
+                display: flex;
+                place-content: center;
+
+                p-button {
+                    padding-left: 5px;
+                }
+            }
         }
     }
 }
@@ -32,6 +47,7 @@ b {
 .mainCard {
     max-width: 600px;
     max-height: 600px;
+    text-align: -webkit-center;
 }
 
 ::ng-deep {

@@ -6,7 +6,7 @@ export interface Ipersonagem {
     type: string	
     gender: string	
     origin: IOrigin	
-    location: object	
+    location: IOrigin	
     image: string 
     episode: []
     url: string
