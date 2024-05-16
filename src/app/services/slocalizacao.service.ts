@@ -23,4 +23,8 @@ export class SlocalizacaoService {
   getPlanetas (): Observable<IDataPayload<Ilocalizacao>> {
     return this.httpClient.get<IDataPayload<Ilocalizacao>>(`${BASEURL}/location/?type=planet`);
   }
+
+  getFilter(queryParam: string): Observable<IDataPayload<Ilocalizacao>> {
+    return this.httpClient.get<IDataPayload<Ilocalizacao>>(`${BASEURL}/location/?${queryParam}`)
+  }
 }
