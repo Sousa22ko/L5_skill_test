@@ -12,7 +12,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { PaginatorModule } from 'primeng/paginator';
 
 
 @Component({
@@ -26,7 +26,8 @@ import { DropdownModule } from 'primeng/dropdown';
     AccordionModule,
     InputTextModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    PaginatorModule
   ],
   templateUrl: './personagem.component.html',
   styleUrl: './personagem.component.scss'
@@ -34,7 +35,8 @@ import { DropdownModule } from 'primeng/dropdown';
 export class PersonagemComponent{
 
   personagens$: Observable<IDataPayload<Ipersonagem>>;
-  pagina: number = 0;
+  pagina: number = 1;
+  first: number = 0;
 
   nomeFiltro: string = '';
   specieFiltro: string = '';
@@ -95,5 +97,10 @@ export class PersonagemComponent{
       this.personagens$ = this.service.getFilter(queryParams);
       this.activeIndex = 0;
     }
+  }
+
+  onPageChange(event: any): void {
+    this.first = event.first;
+    this.personagens$ = this.service.getPersonagens(event.page+1);
   }
 }
