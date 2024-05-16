@@ -1,50 +1,153 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import { Observable, map } from 'rxjs';
+import { Observable, forkJoin, map } from 'rxjs';
 import { RAMServiceService } from '../../../service/ramservice.service';
 import { IDataPayloadPersonagem } from '../../../model/IdataPayloadPersonagem.model';
 import { CommonModule } from '@angular/common';
 import { IdataPayloadLocalizacao } from '../../../model/IdataPayloadLocalizacao.model';
 import { IDataPayloadEpisodio } from '../../../model/IdataPayloadEpisodio.model';
+import { ChartModule } from 'primeng/chart';
+import { ButtonModule } from 'primeng/button';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ CommonModule, CardModule ],
+  imports: [ CommonModule, CardModule, ChartModule, ButtonModule ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-
+  
   personagens$: Observable<IDataPayloadPersonagem>;
   locais$: Observable<IdataPayloadLocalizacao>;
   episodios$: Observable<IDataPayloadEpisodio>;
+  pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
+  qtdPlanetas$: Observable<IdataPayloadLocalizacao>;
+  
+  datachart: any; // grafico de barras
+  data: any; // grafico donnut
 
-  male = 0;
-  female = 0;
-  genderless = 0;
-  unknown = 0;
+  options = {
+    maintainAspectRatio: false,
+    aspectRatio: 0.8,
+    plugins: {
+      tooltip: {
+        mode: 'index',
+        intersect: false
+      },
+      legend: {
+        labels: {
+          color: "#FFF"
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          color: "#fff"
+        },
+        grid: {
+          color: "#fff",
+          drawBorder: false
+        }
+      },
+      y: {
+        stacked: true,
+        ticks: {
+          color: "#fff"
+        },
+        grid: {
+          color: "#fff",
+          drawBorder: false
+        }
+      }
+    }
+  };
+
 
   constructor(private service: RAMServiceService) {
     this.personagens$ = this.service.getPersonagens(0);
     this.locais$ = this.service.getLocais(0);
-    this.episodios$ = this.service.getEpisodios(0);
+    this.episodios$ = this.service.getEpisodios(this.pageEpisodes);
+    this.qtdPlanetas$ = this.service.getPlanetas();
 
-    this.processGender();
+    this.processData();
+    this.processDataChart();
   }
 
-  processGender(): void {
-    this.personagens$.pipe(map(aux => aux.results.forEach(pers => {
-      console.log(pers)
-      if(pers.gender == "Male")
-        this.male += 1;
-      else if(pers.gender == "Female")
-        this.female += 1;
-      else if(pers.gender == "Genderless")
-        this.genderless +=1;
-      else 
-      this.unknown += 1;
-    })));
+  processDataChart(): void{
+
+    let listEpisodes: string[] = [];
+    let listPersEpisodes: number[] = [];
+    this.episodios$.subscribe(resp => {
+      resp.results.forEach(ep => {
+        listEpisodes.push(ep.episode);
+        listPersEpisodes.push(ep.characters.length);
+      });
+    
+      this.datachart = {
+        labels: listEpisodes,
+        datasets: [
+          {
+            label: 'Quantidade de personagens por episódio',
+            fill: false,
+            borderColor: "#9ad052",
+            yAxisID: 'y',
+            tension: 0.4,
+            data: listPersEpisodes
+          },
+        ]
+      };
+    });
+  }
+
+  changePageEpisode(op: string): void {
+    if(op !== 'up' && op !== 'dw') {
+      return;
+    } else if(op == 'up') {
+      this.pageEpisodes += 1;
+    } else if (op == 'dw') {
+      this.pageEpisodes -= 1;
+    }
+
+    this.episodios$ = this.service.getEpisodios(this.pageEpisodes);
+    this.processDataChart();
+
+  }
+
+  //espera as 4 requisições de genero receberem as respostas antes de retornar pro processData
+  customForkJoin (): Observable<any[]> {
+    const males = this.service.getGender("Male");
+    const females = this.service.getGender("Female");
+    const genderless = this.service.getGender("Genderless");
+    const unknown = this.service.getGender("Unknown");
+    return forkJoin([males, females, genderless, unknown]);
+  }
+
+  processData() {
+    let values: number [] = []
+
+    // A API do Rick and Morty não possui no modelo rest uma forma de listar eficientemente os generos, então vou ter que filtrar
+    // os 4 separadamente
+    this.customForkJoin().subscribe(resp => {
+      values.push(resp[0].info.count); // quantidade males
+      values.push(resp[1].info.count); // quantidade females
+      values.push(resp[2].info.count); // quantidade genderless
+      values.push(resp[3].info.count); // quantidade unknown
+
+      this.data = {
+        labels: ['Male', 'Female', 'Genderless', 'Unknown'],
+        datasets: [
+          {
+            data: values,
+            backgroundColor: ["#2F8DFF", "#FFC6B1", "#FFFFFF", "#000000"],
+            hoverBackgroundColor: ["#2F8DFF", "#FFC6B1", "#FFFFFF", "#000000"]
+          }
+        ]
+      };
+    });
   }
 
 }

@@ -1,36 +1,38 @@
 <div class="container">
     <div class="line1">
-        <p-card class="card-l1" [style]="{height: '200px'}">
+        <p-card class="card-l1" [style]="{height: '150px'}">
             <p>Total de personagens:</p>
             <p><b *ngIf="personagens$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="card-l1" [style]="{height: '200px'}">
+        <p-card class="card-l1" [style]="{height: '150px'}">
             <p>Total de locais:</p>
             <p><b *ngIf="locais$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="card-l1" [style]="{height: '200px'}">
+        <p-card class="card-l1" [style]="{height: '150px'}">
             <p>Total de episódios:</p>
             <p><b *ngIf="episodios$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="card-l1 lmaior" [style]="{height: '200px'}">
-            <div class="generos">
-                <div class="generoDiv">
-                    <p>Personagens masculinos:</p>
-                <p><b>{{ male }}</b></p>                
-                </div>
-                <div class="generoDiv">
-                    <p>Personagens femininos:</p>
-                <p><b> {{ female }}</b></p>
-                </div>
-                <!-- <div class="generoDiv">
-                    <p>Personagens sem gênero:</p>
-                <p><b>{{ genderless }}</b></p>                
-                </div>
-                <div class="generoDiv">
-                    <p>Personagens desconhecidos:</p>
-                <p><b> {{ unknown }}</b></p>
-                </div> -->
+        <p-card class="card-l1" [style]="{height: '150px'}">
+            <div class="generoDiv">
+                <p>Total de planetas:</p>
+                <p><b *ngIf="qtdPlanetas$ | async as data">{{ data.info.count }}</b></p>
             </div>
+        </p-card>
+    </div>
+    <div class="line2">
+        <p-card class="card-l2 parte1" [style]="{height: '500px'}">
+            <div class="lineheade2">
+                <p>Quantidade de personagens que aparecem nos episódios: </p>
+                <div class="controle">
+                    <p-button severity="success" [disabled]="pageEpisodes == 1" (click)="changePageEpisode('dw')"><</p-button>
+                    <p-button severity="success" *ngIf="episodios$ | async as data" [disabled]="data.results.length < 20" (click)="changePageEpisode('up')">></p-button>
+                </div>
+            </div>
+            <p-chart type="line" [data]="datachart" [options]="options"/>
+        </p-card>
+        <p-card class="card-l2 parte2" [style]="{height: '500px'}">
+            <p>Personagens por gênero:</p>
+            <p-chart type="doughnut" [data]="data" />
         </p-card>
     </div>
 </div>

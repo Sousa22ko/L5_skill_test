@@ -30,5 +30,27 @@
             }
         }
     }
+
+    .line2 {
+        display: flex;
+        width: 100%;
+
+        .lineheade2 {
+            display: flex ;
+
+            .controle, p-button {
+                align-self: center;
+                padding-left: 10px;
+            }
+        }
+
+        .parte1 {
+            flex: 3;
+        }
+
+        .parte2 {
+            flex: 1;
+        }
+    }
 }
 
