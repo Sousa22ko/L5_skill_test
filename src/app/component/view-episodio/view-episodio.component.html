@@ -1,0 +1,28 @@
+<p-card *ngIf= 'episodio$ | async as data' class="mainCard" [style]="{ width: '600px' , height: '600px', overflow: 'hidden'}" >
+    <div class="grid">
+        <div class="detalhes2 parte texto">
+            <div>
+                <p>Nome do episódio:</p>
+                <p><b>{{data.name}}</b></p>
+            </div>
+        </div>
+        <div class="detalhes1 parte texto">
+            <div>
+                <p>Data de estréia:</p> 
+                <p><b> {{ data.air_date | date : 'dd/MM/yy'}}</b></p>
+            </div>
+        </div>
+        <div class="parte texto">
+            <div>
+                <p>Episódio:</p> 
+                <p><b>{{data.episode}}</b></p>
+            </div>
+        </div>
+        <div class="detalhes2 parte texto">
+            <div>
+                <p>Quantidade de personagens:</p>
+                <p><b>{{data.characters.length}}</b></p>
+            </div>
+        </div>
+    </div>
+</p-card>
