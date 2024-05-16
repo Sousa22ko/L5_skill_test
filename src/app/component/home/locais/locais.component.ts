@@ -1,29 +1,17 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { IDataPayload } from '../../../model/IdataPayload.model';
 import { Ilocalizacao } from '../../../model/Ilocalizacao.model';
 import { SlocalizacaoService } from '../../../services/slocalizacao.service';
-import { AccordionModule } from 'primeng/accordion';
-import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
-import { PaginatorModule } from 'primeng/paginator';
+import { AdvancedComponentModule } from '../../modules/advancedComponent.module';
 
 
 @Component({
   selector: 'app-locais',
   standalone: true,
   imports: [ 
-    CardModule, 
-    ButtonModule, 
-    CommonModule,
-    AccordionModule,
-    InputTextModule,
-    FormsModule, 
-    PaginatorModule
+    AdvancedComponentModule,
   ],
   templateUrl: './locais.component.html',
   styleUrl: './locais.component.scss'

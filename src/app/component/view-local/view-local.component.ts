@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
 import { Ilocalizacao } from '../../model/Ilocalizacao.model';
 import { SlocalizacaoService } from '../../services/slocalizacao.service';
+import { CommomComponentModule } from '../modules/commomComponent.module';
 
 @Component({
   selector: 'app-view-local',
   standalone: true,
-  imports: [ CommonModule, CardModule, ButtonModule ],
+  imports: [ CommomComponentModule ],
   templateUrl: './view-local.component.html',
   styleUrl: './view-local.component.scss'
 })

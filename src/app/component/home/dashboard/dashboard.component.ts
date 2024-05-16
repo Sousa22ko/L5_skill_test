@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { CardModule } from 'primeng/card';
 import { Observable, forkJoin } from 'rxjs';
-import { CommonModule } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
-import { ButtonModule } from 'primeng/button';
 import { SpersonagemService } from '../../../services/spersonagem.service';
 import { IDataPayload } from '../../../model/IdataPayload.model';
 import { Ipersonagem } from '../../../model/Ipersonagem.model';
@@ -11,12 +8,15 @@ import { SlocalizacaoService } from '../../../services/slocalizacao.service';
 import { Ilocalizacao } from '../../../model/Ilocalizacao.model';
 import { Iepisodio } from '../../../model/Iepisoido.model';
 import { SepisodioService } from '../../../services/sepisodio.service';
-
+import { CommomComponentModule } from '../../modules/commomComponent.module';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ CommonModule, CardModule, ChartModule, ButtonModule ],
+  imports: [ 
+    CommomComponentModule, 
+    ChartModule 
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -25,8 +25,9 @@ export class DashboardComponent {
   personagens$: Observable<IDataPayload<Ipersonagem>>;
   locais$: Observable<IDataPayload<Ilocalizacao>>;
   episodios$: Observable<IDataPayload<Iepisodio>>;
-  pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
   qtdPlanetas$: Observable<IDataPayload<Ilocalizacao>>;
+  
+  pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
   
   datachart: any; // grafico de barras
   data: any; // grafico donnut

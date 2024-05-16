@@ -1,28 +1,16 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { IDataPayload } from '../../../model/IdataPayload.model';
 import { Iepisodio } from '../../../model/Iepisoido.model';
 import { SepisodioService } from '../../../services/sepisodio.service';
-import { AccordionModule } from 'primeng/accordion';
-import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
-import { PaginatorModule } from 'primeng/paginator';
+import { AdvancedComponentModule } from '../../modules/advancedComponent.module';
 
 @Component({
   selector: 'app-episodios',
   standalone: true,
   imports: [ 
-    CardModule, 
-    ButtonModule, 
-    CommonModule,
-    AccordionModule,
-    InputTextModule,
-    FormsModule,
-    PaginatorModule
+    AdvancedComponentModule
   ],
   templateUrl: './episodios.component.html',
   styleUrl: './episodios.component.scss'
