@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="line1">
+        <p-card class="card-l1" [style]="{height: '200px'}">
+            <p>Total de personagens:</p>
+            <p><b *ngIf="personagens$ | async as data">{{ data.info.count }}</b></p>
+        </p-card>
+        <p-card class="card-l1" [style]="{height: '200px'}">
+            <p>Total de locais:</p>
+            <p><b *ngIf="locais$ | async as data">{{ data.info.count }}</b></p>
+        </p-card>
+        <p-card class="card-l1" [style]="{height: '200px'}">
+            <p>Total de episódios:</p>
+            <p><b *ngIf="episodios$ | async as data">{{ data.info.count }}</b></p>
+        </p-card>
+        <p-card class="card-l1 lmaior" [style]="{height: '200px'}">
+            <div class="generos">
+                <div class="generoDiv">
+                    <p>Personagens masculinos:</p>
+                <p><b>{{ male }}</b></p>                
+                </div>
+                <div class="generoDiv">
+                    <p>Personagens femininos:</p>
+                <p><b> {{ female }}</b></p>
+                </div>
+                <!-- <div class="generoDiv">
+                    <p>Personagens sem gênero:</p>
+                <p><b>{{ genderless }}</b></p>                
+                </div>
+                <div class="generoDiv">
+                    <p>Personagens desconhecidos:</p>
+                <p><b> {{ unknown }}</b></p>
+                </div> -->
+            </div>
+        </p-card>
+    </div>
+</div>
