@@ -18,9 +18,15 @@
             </div>
         </div>
         <div class="detalhes2 parte texto">
-            <div>
-                <p>Planeta de origem: <b><p-button severity="contrast">{{data.origin.name}}</p-button></b></p>
-                <p>Localização atual: <b><p-button severity="contrast">{{data.origin.name}}</p-button></b></p>
+            <div class="detalhes2Interno">
+                <div class="detalhes2InternoLinha">
+                    <p>Planeta de origem:</p>
+                    <p-button severity="contrast" (click)="gotoPlanet(data.origin.url)">{{data.origin.name}}</p-button>
+                </div>
+                <div class="detalhes2InternoLinha">
+                    <p>Localização atual:</p>
+                    <p-button severity="contrast" (click)="gotoPlanet(data.location.url)">{{data.location.name}}</p-button>
+                </div>
                 <p>Quantidade de episódios: <b>{{data.episode.length}}</b></p>
             </div>
         </div>

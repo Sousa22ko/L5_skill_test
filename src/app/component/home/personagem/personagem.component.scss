@@ -1,10 +1,14 @@
 img {
-    max-width: 100px;
+    height: 100%;
     max-height: 100px;
 }
 
 .card {
     padding: 10px;
+
+    b {
+        color: var(--themecolor);
+    }
 
     &:hover {
         cursor: pointer;
@@ -35,5 +39,11 @@ img {
         .nome {
             margin-left: 20px;
         }
+    }
+}
+
+::ng-deep {
+    .p-card-body, .p-card-content {
+        padding: 0px 1rem 0px 0px;
     }
 }

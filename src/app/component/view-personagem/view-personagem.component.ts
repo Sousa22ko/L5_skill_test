@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ipersonagem } from '../../model/Ipersonagem.model';
 import { Observable, map } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -19,13 +19,15 @@ export class ViewPersonagemComponent {
   id: number = 0;
   personagem$: Observable<Ipersonagem>;
   
-  constructor(private service: SpersonagemService, private router: ActivatedRoute) {
+  constructor(private service: SpersonagemService, private router: ActivatedRoute, private redirect: Router) {
     this.router.params.subscribe(res => {
       this.id = res['id'];
     })
     this.personagem$ = this.service.getPersonagem(this.id);
   }
 
-
-
+  gotoPlanet(url: string) {
+    let parts = url.split('/');
+    this.redirect.navigate([`/local/${parts[parts.length-1]}`]);
+  }
 }

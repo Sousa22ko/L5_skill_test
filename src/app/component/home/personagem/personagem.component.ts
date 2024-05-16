@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 
-import { RAMServiceService } from '../../../service/ramservice.service';
 import { ButtonModule } from 'primeng/button';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { IDataPayloadPersonagem } from '../../../model/IdataPayloadPersonagem.model';
 import { SpersonagemService } from '../../../services/spersonagem.service';
 import { IDataPayload } from '../../../model/IdataPayload.model';
 import { Ipersonagem } from '../../../model/Ipersonagem.model';
