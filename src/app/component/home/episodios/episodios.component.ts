@@ -25,6 +25,6 @@ export class EpisodiosComponent {
 
   // vai para a pagina de detalhes do local
   goto(id: number): void {
-    this.router.navigate([`/local/${id}`]);
+    this.router.navigate([`/episodio/${id}`]);
   }
 }

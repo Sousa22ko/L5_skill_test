@@ -6,6 +6,7 @@ import { Ilocation } from '../model/Ilocation.model';
 import { IDataPayloadPersonagem } from '../model/IdataPayloadPersonagem.model';
 import { IdataPayloadLocalizacao } from '../model/IdataPayloadLocalizacao.model';
 import { IDataPayloadEpisodio } from '../model/IdataPayloadEpisodio.model';
+import { Iepisodio } from '../model/Iepisoido.model';
 
 const BASEURL = 'https://rickandmortyapi.com/api';
 
@@ -36,7 +37,7 @@ export class RAMServiceService {
     return this.httpClient.get<IDataPayloadEpisodio>(`${BASEURL}/episode/?page=${pageNumber}`);
   }
 
-  getEpisodio(id: number): Observable<Ilocation> {
-    return this.httpClient.get<Ilocation>(`${BASEURL}/episode/${id}`)
+  getEpisodio(id: number): Observable<Iepisodio> {
+    return this.httpClient.get<Iepisodio>(`${BASEURL}/episode/${id}`)
   }
 }

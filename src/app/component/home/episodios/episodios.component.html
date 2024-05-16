@@ -5,7 +5,7 @@
                 <div class="nome"><p><b>Nome do episódio:</b></p>{{ item.name }}</div>
             </div>
             <div class="data">
-                <div class="tipo"><p><b>Data de lançamento:</b></p>{{ item.air_date }}</div>
+                <div class="tipo"><p><b>Data de estréia:</b></p>{{ item.air_date | date : 'dd/MM/yy' }}</div>
             </div>
             <div class="data">
                 <div class="tipo"><p><b>Episodio:</b></p>{{ item.episode }}</div>
