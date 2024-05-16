@@ -19,4 +19,8 @@ export class SepisodioService {
   getEpisodio(id: number): Observable<Iepisodio> {
     return this.httpClient.get<Iepisodio>(`${BASEURL}/episode/${id}`)
   }
+
+  getFilter(queryParam: string): Observable<IDataPayload<Iepisodio>> {
+    return this.httpClient.get<IDataPayload<Iepisodio>>(`${BASEURL}/episode/?${queryParam}`)
+  }
 }
