@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { IDataPayloadPersonagem } from '../../../model/IdataPayloadPersonagem.model';
+import { SpersonagemService } from '../../../services/spersonagem.service';
+import { IDataPayload } from '../../../model/IdataPayload.model';
+import { Ipersonagem } from '../../../model/Ipersonagem.model';
 
 
 @Component({
@@ -18,10 +21,10 @@ import { IDataPayloadPersonagem } from '../../../model/IdataPayloadPersonagem.mo
 })
 export class PersonagemComponent {
 
-  personagens$: Observable<IDataPayloadPersonagem>;
+  personagens$: Observable<IDataPayload<Ipersonagem>>;
   pagina: number = 0;
 
-  constructor(private service: RAMServiceService, private router: Router) {
+  constructor(private service: SpersonagemService, private router: Router) {
     this.pagina = 0; 
     this.personagens$ = this.service.getPersonagens(this.pagina);
   }

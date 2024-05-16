@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Observable } from 'rxjs';
-import { RAMServiceService } from '../../../service/ramservice.service';
 import { Router } from '@angular/router';
-import { IDataPayloadEpisodio } from '../../../model/IdataPayloadEpisodio.model';
+import { IDataPayload } from '../../../model/IdataPayload.model';
+import { Iepisodio } from '../../../model/Iepisoido.model';
+import { SepisodioService } from '../../../services/sepisodio.service';
 
 @Component({
   selector: 'app-episodios',
@@ -16,10 +17,10 @@ import { IDataPayloadEpisodio } from '../../../model/IdataPayloadEpisodio.model'
 })
 export class EpisodiosComponent {
 
-  episodios$: Observable<IDataPayloadEpisodio>;
+  episodios$: Observable<IDataPayload<Iepisodio>>;
   pagina: number = 0;
 
-  constructor(private service: RAMServiceService, private router: Router) {
+  constructor(private service: SepisodioService, private router: Router) {
     this.episodios$ = this.service.getEpisodios(this.pagina);
   }
 

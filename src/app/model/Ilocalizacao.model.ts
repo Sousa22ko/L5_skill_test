@@ -1,4 +1,4 @@
-export interface Ilocation {
+export interface Ilocalizacao {
     id: number,
     name: string,
     type: string, 

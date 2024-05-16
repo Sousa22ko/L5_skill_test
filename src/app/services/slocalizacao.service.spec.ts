@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RAMServiceService } from './ramservice.service';
+import { SlocalizacaoService } from './slocalizacao.service';
 
-describe('RAMServiceService', () => {
-  let service: RAMServiceService;
+describe('SlocalizacaoService', () => {
+  let service: SlocalizacaoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RAMServiceService);
+    service = TestBed.inject(SlocalizacaoService);
   });
 
   it('should be created', () => {

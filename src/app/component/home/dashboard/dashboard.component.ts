@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import { Observable, forkJoin, map } from 'rxjs';
-import { RAMServiceService } from '../../../service/ramservice.service';
-import { IDataPayloadPersonagem } from '../../../model/IdataPayloadPersonagem.model';
+import { Observable, forkJoin } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { IdataPayloadLocalizacao } from '../../../model/IdataPayloadLocalizacao.model';
-import { IDataPayloadEpisodio } from '../../../model/IdataPayloadEpisodio.model';
 import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
+import { SpersonagemService } from '../../../services/spersonagem.service';
+import { IDataPayload } from '../../../model/IdataPayload.model';
+import { Ipersonagem } from '../../../model/Ipersonagem.model';
+import { SlocalizacaoService } from '../../../services/slocalizacao.service';
+import { Ilocalizacao } from '../../../model/Ilocalizacao.model';
+import { Iepisodio } from '../../../model/Iepisoido.model';
+import { SepisodioService } from '../../../services/sepisodio.service';
 
 
 @Component({
@@ -19,11 +22,11 @@ import { ButtonModule } from 'primeng/button';
 })
 export class DashboardComponent {
   
-  personagens$: Observable<IDataPayloadPersonagem>;
-  locais$: Observable<IdataPayloadLocalizacao>;
-  episodios$: Observable<IDataPayloadEpisodio>;
+  personagens$: Observable<IDataPayload<Ipersonagem>>;
+  locais$: Observable<IDataPayload<Ilocalizacao>>;
+  episodios$: Observable<IDataPayload<Iepisodio>>;
   pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
-  qtdPlanetas$: Observable<IdataPayloadLocalizacao>;
+  qtdPlanetas$: Observable<IDataPayload<Ilocalizacao>>;
   
   datachart: any; // grafico de barras
   data: any; // grafico donnut
@@ -67,11 +70,11 @@ export class DashboardComponent {
   };
 
 
-  constructor(private service: RAMServiceService) {
-    this.personagens$ = this.service.getPersonagens(0);
-    this.locais$ = this.service.getLocais(0);
-    this.episodios$ = this.service.getEpisodios(this.pageEpisodes);
-    this.qtdPlanetas$ = this.service.getPlanetas();
+  constructor(private personagemS: SpersonagemService, private localizacaoS: SlocalizacaoService, private episodioS: SepisodioService) {
+    this.personagens$ = this.personagemS.getPersonagens(0);
+    this.locais$ = this.localizacaoS.getLocais(0);
+    this.episodios$ = this.episodioS.getEpisodios(this.pageEpisodes);
+    this.qtdPlanetas$ = this.localizacaoS.getPlanetas();
 
     this.processData();
     this.processDataChart();
@@ -112,17 +115,17 @@ export class DashboardComponent {
       this.pageEpisodes -= 1;
     }
 
-    this.episodios$ = this.service.getEpisodios(this.pageEpisodes);
+    this.episodios$ = this.episodioS.getEpisodios(this.pageEpisodes);
     this.processDataChart();
 
   }
 
   //espera as 4 requisições de genero receberem as respostas antes de retornar pro processData
   customForkJoin (): Observable<any[]> {
-    const males = this.service.getGender("Male");
-    const females = this.service.getGender("Female");
-    const genderless = this.service.getGender("Genderless");
-    const unknown = this.service.getGender("Unknown");
+    const males = this.personagemS.getGender("Male");
+    const females = this.personagemS.getGender("Female");
+    const genderless = this.personagemS.getGender("Genderless");
+    const unknown = this.personagemS.getGender("Unknown");
     return forkJoin([males, females, genderless, unknown]);
   }
 
