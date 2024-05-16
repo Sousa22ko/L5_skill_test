@@ -4,6 +4,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { PersonagemComponent } from './personagem/personagem.component';
 import { LocaisComponent } from './locais/locais.component';
 import { EpisodiosComponent } from './episodios/episodios.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { EpisodiosComponent } from './episodios/episodios.component';
   imports: [ 
     PanelModule, 
     TabViewModule, 
+    DashboardComponent,
     PersonagemComponent,
     LocaisComponent,
     EpisodiosComponent

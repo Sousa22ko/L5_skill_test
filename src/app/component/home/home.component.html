@@ -1,5 +1,10 @@
 <p-panel header="Header">
-    <p-tabView [activeIndex]="2">
+    <p-tabView [activeIndex]="0">
+        <p-tabPanel header="Dashboard">
+            <ng-template pTemplate="content"> <!-- lazy-load -->
+                <app-dashboard></app-dashboard>
+            </ng-template>
+        </p-tabPanel>
         <p-tabPanel header="Personagens">
             <ng-template pTemplate="content"> <!-- lazy-load -->
                 <app-personagem></app-personagem>

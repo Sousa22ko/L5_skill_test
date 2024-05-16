@@ -40,4 +40,12 @@ export class RAMServiceService {
   getEpisodio(id: number): Observable<Iepisodio> {
     return this.httpClient.get<Iepisodio>(`${BASEURL}/episode/${id}`)
   }
+
+  getGender(gender: string): Observable<IDataPayloadPersonagem> {
+    return this.httpClient.get<IDataPayloadPersonagem>(`${BASEURL}/character/?gender=${gender}`);
+  }
+
+  getPlanetas (): Observable<IdataPayloadLocalizacao> {
+    return this.httpClient.get<IdataPayloadLocalizacao>(`${BASEURL}/location/?type=planet`);
+  }
 }
