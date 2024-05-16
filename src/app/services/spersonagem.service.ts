@@ -24,4 +24,8 @@ export class SpersonagemService {
     return this.httpClient.get<IDataPayload<Ipersonagem>>(`${BASEURL}/character/?gender=${gender}`);
   }
 
+  getFilter(queryParam: string): Observable<IDataPayload<Ipersonagem>> {
+    return this.httpClient.get<IDataPayload<Ipersonagem>>(`${BASEURL}/character/?${queryParam}`)
+  }
+
 }
