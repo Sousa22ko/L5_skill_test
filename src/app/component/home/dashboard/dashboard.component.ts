@@ -8,6 +8,9 @@ import { IdataPayloadLocalizacao } from '../../../model/IdataPayloadLocalizacao.
 import { IDataPayloadEpisodio } from '../../../model/IdataPayloadEpisodio.model';
 import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
+import { SpersonagemService } from '../../../services/spersonagem.service';
+import { IDataPayload } from '../../../model/IdataPayload.model';
+import { Ipersonagem } from '../../../model/Ipersonagem.model';
 
 
 @Component({
@@ -19,7 +22,7 @@ import { ButtonModule } from 'primeng/button';
 })
 export class DashboardComponent {
   
-  personagens$: Observable<IDataPayloadPersonagem>;
+  personagens$: Observable<IDataPayload<Ipersonagem>>;
   locais$: Observable<IdataPayloadLocalizacao>;
   episodios$: Observable<IDataPayloadEpisodio>;
   pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
@@ -67,8 +70,8 @@ export class DashboardComponent {
   };
 
 
-  constructor(private service: RAMServiceService) {
-    this.personagens$ = this.service.getPersonagens(0);
+  constructor(private service: RAMServiceService, private personagemS: SpersonagemService) {
+    this.personagens$ = this.personagemS.getPersonagens(0);
     this.locais$ = this.service.getLocais(0);
     this.episodios$ = this.service.getEpisodios(this.pageEpisodes);
     this.qtdPlanetas$ = this.service.getPlanetas();
