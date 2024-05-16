@@ -1,26 +1,26 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import {  IdataPayloadLocalizacao } from '../../../model/IdataPayloadLocalizacao.model';
-import { RAMServiceService } from '../../../service/ramservice.service';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { Observable } from 'rxjs';
+import { RAMServiceService } from '../../../service/ramservice.service';
 import { Router } from '@angular/router';
+import { IDataPayloadEpisodio } from '../../../model/IdataPayloadEpisodio.model';
 
 @Component({
-  selector: 'app-locais',
+  selector: 'app-episodios',
   standalone: true,
   imports: [ CardModule, ButtonModule, CommonModule ],
-  templateUrl: './locais.component.html',
-  styleUrl: './locais.component.scss'
+  templateUrl: './episodios.component.html',
+  styleUrl: './episodios.component.scss'
 })
-export class LocaisComponent {
+export class EpisodiosComponent {
 
-  locais$: Observable<IdataPayloadLocalizacao>;
+  episodios$: Observable<IDataPayloadEpisodio>;
   pagina: number = 0;
 
   constructor(private service: RAMServiceService, private router: Router) {
-    this.locais$ = this.service.getLocais(this.pagina);
+    this.episodios$ = this.service.getEpisodios(this.pagina);
   }
 
   // vai para a pagina de detalhes do local
