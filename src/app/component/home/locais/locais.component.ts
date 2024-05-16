@@ -10,6 +10,8 @@ import { SlocalizacaoService } from '../../../services/slocalizacao.service';
 import { AccordionModule } from 'primeng/accordion';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { PaginatorModule } from 'primeng/paginator';
+
 
 @Component({
   selector: 'app-locais',
@@ -20,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AccordionModule,
     InputTextModule,
-    FormsModule
+    FormsModule, 
+    PaginatorModule
   ],
   templateUrl: './locais.component.html',
   styleUrl: './locais.component.scss'
@@ -28,13 +31,14 @@ import { FormsModule } from '@angular/forms';
 export class LocaisComponent {
 
   locais$: Observable<IDataPayload<Ilocalizacao>>;
-  pagina: number = 0;
+  pagina: number = 1;
 
   nomeFiltro: string = '';
   typeFiltro: string = '';
   dimensionFiltro: string = '';
   activeIndex: any = undefined;
 
+  first: number = 0;
   
 
   constructor(private service: SlocalizacaoService, private router: Router) {
@@ -72,5 +76,10 @@ export class LocaisComponent {
       this.locais$ = this.service.getFilter(queryParams);
       this.activeIndex = 0;
     }
+  }
+
+  onPageChange(event: any): void {
+    this.first = event.first;
+    this.locais$ = this.service.getLocais(event.page+1);
   }
 }

@@ -10,6 +10,7 @@ import { SepisodioService } from '../../../services/sepisodio.service';
 import { AccordionModule } from 'primeng/accordion';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { PaginatorModule } from 'primeng/paginator';
 
 @Component({
   selector: 'app-episodios',
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AccordionModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    PaginatorModule
   ],
   templateUrl: './episodios.component.html',
   styleUrl: './episodios.component.scss'
@@ -28,7 +30,8 @@ import { FormsModule } from '@angular/forms';
 export class EpisodiosComponent {
 
   episodios$: Observable<IDataPayload<Iepisodio>>;
-  pagina: number = 0;
+  pagina: number = 1;
+  first: number = 0;
   activeIndex: any = undefined;
   nomeFiltro: string = '';
   episodeFiltro: string = '';
@@ -66,5 +69,10 @@ export class EpisodiosComponent {
       this.episodios$ = this.service.getFilter(queryParams);
       this.activeIndex = 0;
     }
+  }
+
+  onPageChange(event: any): void {
+    this.first = event.first;
+    this.episodios$ = this.service.getEpisodios(event.page+1);
   }
 }
