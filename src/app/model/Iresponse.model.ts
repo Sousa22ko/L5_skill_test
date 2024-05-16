@@ -1,5 +1,5 @@
 import { Iepisodio } from "./Iepisoido.model";
-import { Ilocation } from "./Ilocation.model";
+import { Ilocation } from "./Ilocalizacao.model";
 import { Ipersonagem } from "./Ipersonagem.model";
 
 // não funcionou :/ 

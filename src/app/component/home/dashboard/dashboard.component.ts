@@ -11,6 +11,8 @@ import { ButtonModule } from 'primeng/button';
 import { SpersonagemService } from '../../../services/spersonagem.service';
 import { IDataPayload } from '../../../model/IdataPayload.model';
 import { Ipersonagem } from '../../../model/Ipersonagem.model';
+import { SlocalizacaoService } from '../../../services/slocalizacao.service';
+import { Ilocalizacao } from '../../../model/Ilocalizacao.model';
 
 
 @Component({
@@ -23,7 +25,7 @@ import { Ipersonagem } from '../../../model/Ipersonagem.model';
 export class DashboardComponent {
   
   personagens$: Observable<IDataPayload<Ipersonagem>>;
-  locais$: Observable<IdataPayloadLocalizacao>;
+  locais$: Observable<IDataPayload<Ilocalizacao>>;
   episodios$: Observable<IDataPayloadEpisodio>;
   pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
   qtdPlanetas$: Observable<IdataPayloadLocalizacao>;
@@ -70,9 +72,9 @@ export class DashboardComponent {
   };
 
 
-  constructor(private service: RAMServiceService, private personagemS: SpersonagemService) {
+  constructor(private service: RAMServiceService, private personagemS: SpersonagemService, private localizacaoS: SlocalizacaoService) {
     this.personagens$ = this.personagemS.getPersonagens(0);
-    this.locais$ = this.service.getLocais(0);
+    this.locais$ = this.localizacaoS.getLocais(0);
     this.episodios$ = this.service.getEpisodios(this.pageEpisodes);
     this.qtdPlanetas$ = this.service.getPlanetas();
 
@@ -122,10 +124,10 @@ export class DashboardComponent {
 
   //espera as 4 requisições de genero receberem as respostas antes de retornar pro processData
   customForkJoin (): Observable<any[]> {
-    const males = this.service.getGender("Male");
-    const females = this.service.getGender("Female");
-    const genderless = this.service.getGender("Genderless");
-    const unknown = this.service.getGender("Unknown");
+    const males = this.personagemS.getGender("Male");
+    const females = this.personagemS.getGender("Female");
+    const genderless = this.personagemS.getGender("Genderless");
+    const unknown = this.personagemS.getGender("Unknown");
     return forkJoin([males, females, genderless, unknown]);
   }
 

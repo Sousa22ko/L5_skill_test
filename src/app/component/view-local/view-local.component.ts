@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ilocation } from '../../model/Ilocation.model';
+import { Ilocation } from '../../model/Ilocalizacao.model';
 import { RAMServiceService } from '../../service/ramservice.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';

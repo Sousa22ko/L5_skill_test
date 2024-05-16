@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ipersonagem } from '../model/Ipersonagem.model';
-import { Ilocation } from '../model/Ilocation.model';
+import { Ilocalizacao } from '../model/Ilocalizacao.model';
 import { IDataPayloadPersonagem } from '../model/IdataPayloadPersonagem.model';
 import { IdataPayloadLocalizacao } from '../model/IdataPayloadLocalizacao.model';
 import { IDataPayloadEpisodio } from '../model/IdataPayloadEpisodio.model';
@@ -29,8 +29,8 @@ export class RAMServiceService {
     return this.httpClient.get<IdataPayloadLocalizacao>(`${BASEURL}/location/?page=${pageNumber}`);
   }
 
-  getLocal(id: number): Observable<Ilocation> {
-    return this.httpClient.get<Ilocation>(`${BASEURL}/location/${id}`)
+  getLocal(id: number): Observable<Ilocalizacao> {
+    return this.httpClient.get<Ilocalizacao>(`${BASEURL}/location/${id}`)
   }
 
   getEpisodios(pageNumber: number): Observable<IDataPayloadEpisodio>{

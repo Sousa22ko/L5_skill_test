@@ -20,4 +20,8 @@ export class SpersonagemService {
     return this.httpClient.get<Ipersonagem>(`${BASEURL}/character/${id}`)
   }
 
+  getGender(gender: string): Observable<IDataPayload<Ipersonagem>> {
+    return this.httpClient.get<IDataPayload<Ipersonagem>>(`${BASEURL}/character/?gender=${gender}`);
+  }
+
 }
