@@ -13,6 +13,8 @@ import { IDataPayload } from '../../../model/IdataPayload.model';
 import { Ipersonagem } from '../../../model/Ipersonagem.model';
 import { SlocalizacaoService } from '../../../services/slocalizacao.service';
 import { Ilocalizacao } from '../../../model/Ilocalizacao.model';
+import { Iepisodio } from '../../../model/Iepisoido.model';
+import { SepisodioService } from '../../../services/sepisodio.service';
 
 
 @Component({
@@ -26,9 +28,9 @@ export class DashboardComponent {
   
   personagens$: Observable<IDataPayload<Ipersonagem>>;
   locais$: Observable<IDataPayload<Ilocalizacao>>;
-  episodios$: Observable<IDataPayloadEpisodio>;
+  episodios$: Observable<IDataPayload<Iepisodio>>;
   pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
-  qtdPlanetas$: Observable<IdataPayloadLocalizacao>;
+  qtdPlanetas$: Observable<IDataPayload<Ilocalizacao>>;
   
   datachart: any; // grafico de barras
   data: any; // grafico donnut
@@ -72,11 +74,11 @@ export class DashboardComponent {
   };
 
 
-  constructor(private service: RAMServiceService, private personagemS: SpersonagemService, private localizacaoS: SlocalizacaoService) {
+  constructor(private service: RAMServiceService, private personagemS: SpersonagemService, private localizacaoS: SlocalizacaoService, private episodioS: SepisodioService) {
     this.personagens$ = this.personagemS.getPersonagens(0);
     this.locais$ = this.localizacaoS.getLocais(0);
-    this.episodios$ = this.service.getEpisodios(this.pageEpisodes);
-    this.qtdPlanetas$ = this.service.getPlanetas();
+    this.episodios$ = this.episodioS.getEpisodios(this.pageEpisodes);
+    this.qtdPlanetas$ = this.localizacaoS.getPlanetas();
 
     this.processData();
     this.processDataChart();
@@ -117,7 +119,7 @@ export class DashboardComponent {
       this.pageEpisodes -= 1;
     }
 
-    this.episodios$ = this.service.getEpisodios(this.pageEpisodes);
+    this.episodios$ = this.episodioS.getEpisodios(this.pageEpisodes);
     this.processDataChart();
 
   }
