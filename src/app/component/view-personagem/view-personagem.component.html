@@ -21,11 +21,11 @@
             <div class="detalhes2Interno">
                 <div class="detalhes2InternoLinha">
                     <p>Planeta de origem:</p>
-                    <p-button severity="contrast" (click)="gotoPlanet(data.origin.url)">{{data.origin.name}}</p-button>
+                    <p-button severity="contrast" [disabled]="data.origin.name == 'unknown'" (click)="gotoPlanet(data.origin.url)">{{data.origin.name}}</p-button>
                 </div>
                 <div class="detalhes2InternoLinha">
                     <p>Localização atual:</p>
-                    <p-button severity="contrast" (click)="gotoPlanet(data.location.url)">{{data.location.name}}</p-button>
+                    <p-button severity="contrast" [disabled]="data.location.name == 'unknown'" (click)="gotoPlanet(data.location.url)">{{data.location.name}}</p-button>
                 </div>
                 <p>Quantidade de episódios: <b>{{data.episode.length}}</b></p>
             </div>

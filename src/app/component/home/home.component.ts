@@ -56,15 +56,15 @@ export class HomeComponent {
 
   changeTab(event: any) {
     if(event.index == 1) {
-      this.filtroAtual = {pagina: 1, filtro: this.filtroAtual?.filtro};
+      this.filtroAtual = {pagina: 1};
       this.onPageChange({page: 1});
     }
     else if(event.index == 2) {
-      this.filtroAtual = {pagina: 2, filtro: this.filtroAtual?.filtro};
+      this.filtroAtual = {pagina: 2};
       this.onPageChange({page: 1});
     }
     else if(event.index == 3) {
-      this.filtroAtual = {pagina: 3, filtro: this.filtroAtual?.filtro};
+      this.filtroAtual = {pagina: 3};
       this.onPageChange({page: 1});
     }
   }
