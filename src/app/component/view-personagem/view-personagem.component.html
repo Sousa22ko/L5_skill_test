@@ -14,7 +14,7 @@
                 <p>Status: <b>{{data.status}}</b></p>
                 <p>Espécie: <b>{{data.species}}</b></p>
                 <p>Gênero: <b>{{data.gender}}</b></p>
-                <p>Tipo: <b>{{data.type}}</b></p>
+                <p *ngIf="data.type">Tipo: <b>{{data.type}}</b></p>
             </div>
         </div>
         <div class="detalhes2 parte texto">
