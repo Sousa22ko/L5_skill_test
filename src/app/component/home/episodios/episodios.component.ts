@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { IDataPayload } from '@models/IdataPayload.model';
@@ -15,17 +15,19 @@ import { CommomComponentModule } from '@modules/commomComponent.module';
   templateUrl: './episodios.component.html',
   styleUrl: './episodios.component.scss'
 })
-export class EpisodiosComponent {
+export class EpisodiosComponent implements OnInit {
 
-  episodios$: Observable<IDataPayload<Iepisodio>>;
-  pagina: number = 1;
-  first: number = 0;
-  activeIndex: any = undefined;
-  nomeFiltro: string = '';
-  episodeFiltro: string = '';
+  episodios$!: Observable<IDataPayload<Iepisodio>>;
+  setTotalRecords = output<number>();
 
   constructor(private service: SepisodioService, private router: Router) {
-    this.episodios$ = this.service.getEpisodios(this.pagina);
+  }
+  
+  ngOnInit(): void {
+    this.episodios$ = this.service.getEpisodios(1);
+    this.episodios$.subscribe(resp => {
+      this.setTotalRecords.emit(resp.info.count)
+    })
   }
 
   // vai para a pagina de detalhes do local
@@ -33,27 +35,8 @@ export class EpisodiosComponent {
     this.router.navigate([`/episodio/${id}`]);
   }
 
-  limparFiltros(): void {
-    let reset = (this.nomeFiltro.length > 0) || (this.episodeFiltro.length > 0)
-    if (!reset)  // caso não haja nenhum campo do filtro para limpar
-      return;
-
-    //reseta os campos
-    this.nomeFiltro = '';
-    this.episodeFiltro = '';
-
-    //reseta a consulta para o padrão
-    this.episodios$ = this.service.getEpisodios(this.pagina);
-    //reabre a aba de filtro pois os campos atualizados fecham o filtro
-    this.activeIndex = 0;
-  }
-
-  filtrar(queryParams: string): void {
+  filtrar(queryParams: string): Observable<IDataPayload<Iepisodio>> {
     this.episodios$ = this.service.getFilter(queryParams);
-  }
-
-  onPageChange(event: any): void {
-    this.first = event.first;
-    this.episodios$ = this.service.getEpisodios(event.page+1);
+    return this.episodios$;
   }
 }

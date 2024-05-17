@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -19,21 +19,21 @@ import { CommomComponentModule } from '@modules/commomComponent.module';
   templateUrl: './locais.component.html',
   styleUrl: './locais.component.scss'
 })
-export class LocaisComponent {
+export class LocaisComponent implements OnInit{
 
-  locais$: Observable<IDataPayload<Ilocalizacao>>;
+  locais$!: Observable<IDataPayload<Ilocalizacao>>;
   pagina: number = 1;
-
-  nomeFiltro: string = '';
-  typeFiltro: string = '';
-  dimensionFiltro: string = '';
-  activeIndex: any = undefined;
-
-  first: number = 0;
-  
+  setTotalRecords = output<number>();  
 
   constructor(private service: SlocalizacaoService, private router: Router) {
+  }
+  
+  ngOnInit(): void {
     this.locais$ = this.service.getLocais(this.pagina);
+    this.locais$.subscribe(resp => {
+      console.log("emit")
+      this.setTotalRecords.emit(resp.info.count);
+    })
   }
 
   // vai para a pagina de detalhes do local
@@ -41,28 +41,8 @@ export class LocaisComponent {
     this.router.navigate([`/local/${id}`]);
   }
 
-  limparFiltros(): void {
-    let reset = (this.nomeFiltro.length > 0) || (this.typeFiltro.length > 0) || (this.dimensionFiltro.length > 0) 
-    if (!reset)  // caso não haja nenhum campo do filtro para limpar
-      return;
-
-    //reseta os campos
-    this.nomeFiltro = '';
-    this.typeFiltro = '';
-    this.dimensionFiltro = '';
-
-    //reseta a consulta para o padrão
-    this.locais$ = this.service.getLocais(this.pagina);
-    //reabre a aba de filtro pois os campos atualizados fecham o filtro
-    this.activeIndex = 0;
-  }
-
-  filtrar(queryParams: string): void {
+  filtrar(queryParams: string): Observable<IDataPayload<Ilocalizacao>> {
     this.locais$ = this.service.getFilter(queryParams);
-  }
-
-  onPageChange(event: any): void {
-    this.first = event.first;
-    this.locais$ = this.service.getLocais(event.page+1);
+    return this.locais$;
   }
 }
