@@ -48,15 +48,8 @@ export class EpisodiosComponent {
     this.activeIndex = 0;
   }
 
-  filtrar(): void {
-    let queryParams = '';
-    queryParams += this.nomeFiltro.length > 0 ?  `name=${this.nomeFiltro}&` : ""
-    queryParams += this.episodeFiltro.length > 0 ?  `episode=${this.episodeFiltro}&` : ""
-
-    if(queryParams.length > 0){ // verifica se existe algum filtro
-      this.episodios$ = this.service.getFilter(queryParams);
-      this.activeIndex = 0;
-    }
+  filtrar(queryParams: string): void {
+    this.episodios$ = this.service.getFilter(queryParams);
   }
 
   onPageChange(event: any): void {

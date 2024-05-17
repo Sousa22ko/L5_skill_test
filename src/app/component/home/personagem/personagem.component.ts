@@ -74,19 +74,11 @@ export class PersonagemComponent{
     this.activeIndex = 0;
   }
 
-  filtrar(): void {
-    let queryParams = '';
-    queryParams += this.nomeFiltro.length > 0 ?  `name=${this.nomeFiltro}&` : ""
-    queryParams += this.typeFiltro.length > 0 ?  `type=${this.typeFiltro}&` : ""
-    queryParams += this.specieFiltro.length > 0 ?  `species=${this.specieFiltro}&` : ""
-    queryParams += this.genderFiltro ? `gender=${this.genderFiltro.code}&` : ""
-    queryParams += this.statusFiltro ? `status=${this.statusFiltro.code}&` : ""
-
-    if(queryParams.length > 0){ // verifica se existe algum filtro
-      this.personagens$ = this.service.getFilter(queryParams);
-      this.activeIndex = 0;
-    }
+  filtrar(queryParams: string): void {
+    console.log("filtrando personagem")
+    this.personagens$ = this.service.getFilter(queryParams);
   }
+
 
   onPageChange(event: any): void {
     this.first = event.first;

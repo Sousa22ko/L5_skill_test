@@ -1,27 +1,4 @@
 <ng-container *ngIf="locais$ | async as dados"> 
-    <p-accordion class="filtroAccordion" [activeIndex]="activeIndex">
-        <p-accordionTab header="Filtros">
-            <div class="filtros">
-                <div class="item">
-                    <label> Nome: </label>
-                    <input type="text" pInputText [(ngModel)]="nomeFiltro" placeholder="Earth (C-137)"/>
-                </div>
-                <div class="item">
-                    <label> Tipo: </label>
-                    <input type="text" pInputText [(ngModel)]="typeFiltro" placeholder="Planet"/>
-                </div>
-                <div class="item">
-                    <label> Dimensão: </label>
-                    <input type="text" pInputText [(ngModel)]="dimensionFiltro" placeholder="unknown"/>
-                </div>
-            </div>
-            <div class="actions">
-                <p-button (click)="limparFiltros()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Limpar filtros</p-button>
-                <p-button (click)="filtrar()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Filtrar</p-button>
-            </div>
-        </p-accordionTab>
-    </p-accordion>
-
     <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)">
         <div class="linhaCard">
             <div class="data">

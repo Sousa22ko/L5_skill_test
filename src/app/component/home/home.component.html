@@ -1,5 +1,6 @@
 <p-panel header="Header">
-    <p-tabView [activeIndex]="0">
+    <app-filtro [activeIndex]="activeIndex" (pesquisar)="pesquisar($event)"></app-filtro>
+    <p-tabView [(activeIndex)]="activeIndex">
         <p-tabPanel header="Dashboard">
             <ng-template pTemplate="content"> <!-- lazy-load -->
                 <app-dashboard></app-dashboard>
