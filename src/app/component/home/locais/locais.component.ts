@@ -7,14 +7,14 @@ import { Ilocalizacao } from '@models/Ilocalizacao.model';
 
 import { SlocalizacaoService } from '@services/slocalizacao.service';
 
-import { AdvancedComponentModule } from '@modules/advancedComponent.module';
+import { CommomComponentModule } from '@modules/commomComponent.module';
 
 
 @Component({
   selector: 'app-locais',
   standalone: true,
   imports: [ 
-    AdvancedComponentModule,
+    CommomComponentModule,
   ],
   templateUrl: './locais.component.html',
   styleUrl: './locais.component.scss'

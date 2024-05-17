@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DropdownModule } from 'primeng/dropdown';
 
 import { SpersonagemService } from '@services/spersonagem.service';
 
 import { IDataPayload } from '@models/IdataPayload.model';
 import { Ipersonagem } from '@models/Ipersonagem.model';
 
-import { AdvancedComponentModule } from '@modules/advancedComponent.module';
+import { CommomComponentModule } from '@modules/commomComponent.module';
 
 
 @Component({
   selector: 'app-personagem',
   standalone: true,
   imports: [ 
-    AdvancedComponentModule,
-    DropdownModule,
+    CommomComponentModule,
   ],
   templateUrl: './personagem.component.html',
   styleUrl: './personagem.component.scss'

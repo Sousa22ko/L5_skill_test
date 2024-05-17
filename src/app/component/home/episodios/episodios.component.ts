@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { IDataPayload } from '@models/IdataPayload.model';
 import { Iepisodio } from '@models/Iepisodio.model';
 import { SepisodioService } from '@services/sepisodio.service';
-import { AdvancedComponentModule } from '@modules/advancedComponent.module';
+import { CommomComponentModule } from '@modules/commomComponent.module';
 
 @Component({
   selector: 'app-episodios',
   standalone: true,
   imports: [ 
-    AdvancedComponentModule
+    CommomComponentModule
   ],
   templateUrl: './episodios.component.html',
   styleUrl: './episodios.component.scss'
