@@ -1,24 +1,29 @@
 <p-panel header="Header">
-    <p-tabView [activeIndex]="0">
+    <app-filtro [activeIndex]="activeIndex" (pesquisar)="pesquisar($event)"></app-filtro>
+    <p-tabView [(activeIndex)]="activeIndex" (onChange)="changeTab($event)">
         <p-tabPanel header="Dashboard">
-            <ng-template pTemplate="content"> <!-- lazy-load -->
-                <app-dashboard></app-dashboard>
-            </ng-template>
+            <app-dashboard></app-dashboard>
         </p-tabPanel>
-        <p-tabPanel header="Personagens">
+        <p-tabPanel header="Personagens" >
             <ng-template pTemplate="content"> <!-- lazy-load -->
-                <app-personagem></app-personagem>
+                <app-personagem (setTotalRecords)="setTotalRecords($event)"></app-personagem>
             </ng-template>
         </p-tabPanel>
         <p-tabPanel header="Locais">
             <ng-template pTemplate="content"> <!-- lazy-load -->
-                <app-locais></app-locais>
+                <app-locais (setTotalRecords)="setTotalRecords($event)"></app-locais>
             </ng-template>
         </p-tabPanel>
         <p-tabPanel header="Episódios">
             <ng-template pTemplate="content"> <!-- lazy-load -->
-                <app-episodios></app-episodios>
+                <app-episodios (setTotalRecords)="setTotalRecords($event)"></app-episodios>
             </ng-template>
         </p-tabPanel>
+        <div class="paginator">
+            <p-paginator 
+                (onPageChange)="onPageChange($event)" 
+                [rows]="20" 
+                [totalRecords]="totalRecords" />
+        </div>
     </p-tabView>
 </p-panel>

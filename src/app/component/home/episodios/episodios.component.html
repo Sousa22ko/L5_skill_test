@@ -1,22 +1,4 @@
 <ng-container *ngIf="episodios$ | async as dados"> 
-    <p-accordion class="filtroAccordion" [activeIndex]="activeIndex">
-        <p-accordionTab header="Filtros">
-            <div class="filtros">
-                <div class="item">
-                    <label> Nome: </label>
-                    <input type="text" pInputText [(ngModel)]="nomeFiltro" placeholder="The Ricklantis Mixup"/>
-                </div>
-                <div class="item">
-                    <label> Episódio: </label>
-                    <input type="text" pInputText [(ngModel)]="episodeFiltro" placeholder="S03E07"/>
-                </div>
-            </div>
-            <div class="actions">
-                <p-button (click)="limparFiltros()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Limpar filtros</p-button>
-                <p-button (click)="filtrar()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Filtrar</p-button>
-            </div>
-        </p-accordionTab>
-    </p-accordion>
     <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)">
         <div class="linhaCard">
             <div class="data">
@@ -33,12 +15,4 @@
             </div>
         </div>
     </p-card>
-    <div class="paginator">
-        <p-paginator 
-            *ngIf="episodios$ | async as dados"
-            (onPageChange)="onPageChange($event)" 
-            [first]="first"
-            [rows]="20" 
-            [totalRecords]="dados.info.count" />
-    </div>
 </ng-container>
