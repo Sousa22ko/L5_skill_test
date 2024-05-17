@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Ilocalizacao } from '../../model/Ilocalizacao.model';
-import { SlocalizacaoService } from '../../services/slocalizacao.service';
-import { CommomComponentModule } from '../modules/commomComponent.module';
+import { Observable } from 'rxjs';
+
+import { Ilocalizacao } from '@models/Ilocalizacao.model';
+
+import { SlocalizacaoService } from '@services/slocalizacao.service';
+
+import { CommomComponentModule } from '@modules/commomComponent.module';
 
 @Component({
   selector: 'app-view-local',

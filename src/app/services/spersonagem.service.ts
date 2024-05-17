@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { IDataPayload } from '@models/IdataPayload.model';
+import { Ipersonagem } from '@models/Ipersonagem.model';
+
 import { BASEURL } from '../util/configs';
-import { IDataPayload } from '../model/IdataPayload.model';
-import { Ipersonagem } from '../model/Ipersonagem.model';
 
 @Injectable({
   providedIn: 'root'

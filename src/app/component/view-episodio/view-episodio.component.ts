@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Iepisodio } from '../../model/Iepisoido.model';
 import { ActivatedRoute } from '@angular/router';
-import { SepisodioService } from '../../services/sepisodio.service';
-import { CommomComponentModule } from '../modules/commomComponent.module';
+import { Observable } from 'rxjs';
+
+import { Iepisodio } from '@models/Iepisodio.model';
+
+import { SepisodioService } from '@services/sepisodio.service';
+
+import { CommomComponentModule } from '@modules/commomComponent.module';
 
 @Component({
   selector: 'app-view-episodio',

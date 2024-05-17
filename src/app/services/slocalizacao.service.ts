@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IDataPayload } from '../model/IdataPayload.model';
-import { Ilocalizacao } from '../model/Ilocalizacao.model';
 import { Observable } from 'rxjs';
+
+import { IDataPayload } from '@models/IdataPayload.model';
+import { Ilocalizacao } from '@models/Ilocalizacao.model';
+
 import { BASEURL } from '../util/configs';
 
 @Injectable({

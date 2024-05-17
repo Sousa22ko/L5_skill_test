@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 import { ChartModule } from 'primeng/chart';
-import { SpersonagemService } from '../../../services/spersonagem.service';
-import { IDataPayload } from '../../../model/IdataPayload.model';
-import { Ipersonagem } from '../../../model/Ipersonagem.model';
-import { SlocalizacaoService } from '../../../services/slocalizacao.service';
-import { Ilocalizacao } from '../../../model/Ilocalizacao.model';
-import { Iepisodio } from '../../../model/Iepisoido.model';
-import { SepisodioService } from '../../../services/sepisodio.service';
-import { CommomComponentModule } from '../../modules/commomComponent.module';
+
+import { SpersonagemService } from '@services/spersonagem.service';
+import { SlocalizacaoService } from '@services/slocalizacao.service';
+import { SepisodioService } from '@services/sepisodio.service';
+
+import { IDataPayload } from '@models/IdataPayload.model';
+import { Ipersonagem } from '@models/Ipersonagem.model';
+import { Ilocalizacao } from '@models/Ilocalizacao.model';
+import { Iepisodio } from '@models/Iepisodio.model';
+
+import { CommomComponentModule } from '@modules/commomComponent.module';
 
 @Component({
   selector: 'app-dashboard',

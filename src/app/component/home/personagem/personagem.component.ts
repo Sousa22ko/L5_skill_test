@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { SpersonagemService } from '../../../services/spersonagem.service';
-import { IDataPayload } from '../../../model/IdataPayload.model';
-import { Ipersonagem } from '../../../model/Ipersonagem.model';
+import { Observable } from 'rxjs';
 import { DropdownModule } from 'primeng/dropdown';
-import { AdvancedComponentModule } from '../../modules/advancedComponent.module';
+
+import { SpersonagemService } from '@services/spersonagem.service';
+
+import { IDataPayload } from '@models/IdataPayload.model';
+import { Ipersonagem } from '@models/Ipersonagem.model';
+
+import { AdvancedComponentModule } from '@modules/advancedComponent.module';
 
 
 @Component({

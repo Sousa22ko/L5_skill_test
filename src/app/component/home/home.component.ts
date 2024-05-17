@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
+
 import { PersonagemComponent } from './personagem/personagem.component';
 import { LocaisComponent } from './locais/locais.component';
 import { EpisodiosComponent } from './episodios/episodios.component';
