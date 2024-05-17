@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { IDataPayload } from '../../../model/IdataPayload.model';
-import { Ilocalizacao } from '../../../model/Ilocalizacao.model';
-import { SlocalizacaoService } from '../../../services/slocalizacao.service';
-import { AdvancedComponentModule } from '../../modules/advancedComponent.module';
+import { Observable } from 'rxjs';
+
+import { IDataPayload } from '@models/IdataPayload.model';
+import { Ilocalizacao } from '@models/Ilocalizacao.model';
+
+import { SlocalizacaoService } from '@services/slocalizacao.service';
+
+import { AdvancedComponentModule } from '@modules/advancedComponent.module';
 
 
 @Component({

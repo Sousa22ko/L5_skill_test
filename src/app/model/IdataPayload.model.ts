@@ -1,4 +1,4 @@
-import { Iepisodio } from "./Iepisoido.model";
+import { Iepisodio } from "./Iepisodio.model";
 import { Iinfo } from "./Iinfo.model";
 import { Ilocalizacao } from "./Ilocalizacao.model";
 import { Ipersonagem } from "./Ipersonagem.model";

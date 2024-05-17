@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDataPayload } from '../model/IdataPayload.model';
-import { Iepisodio } from '../model/Iepisoido.model';
+
+import { IDataPayload } from '@models/IdataPayload.model';
+import { Iepisodio } from '@models/Iepisodio.model';
+
 import { BASEURL } from '../util/configs';
 
 @Injectable({

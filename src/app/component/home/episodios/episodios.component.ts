@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { IDataPayload } from '../../../model/IdataPayload.model';
-import { Iepisodio } from '../../../model/Iepisoido.model';
-import { SepisodioService } from '../../../services/sepisodio.service';
-import { AdvancedComponentModule } from '../../modules/advancedComponent.module';
+import { IDataPayload } from '@models/IdataPayload.model';
+import { Iepisodio } from '@models/Iepisodio.model';
+import { SepisodioService } from '@services/sepisodio.service';
+import { AdvancedComponentModule } from '@modules/advancedComponent.module';
 
 @Component({
   selector: 'app-episodios',

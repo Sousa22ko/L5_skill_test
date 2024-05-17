@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Ipersonagem } from '../../model/Ipersonagem.model';
 import { Observable, map } from 'rxjs';
-import { SpersonagemService } from '../../services/spersonagem.service';
-import { CommomComponentModule } from '../modules/commomComponent.module';
+
+import { Ipersonagem } from '@models/Ipersonagem.model';
+
+import { SpersonagemService } from '@services/spersonagem.service';
+
+import { CommomComponentModule } from '@modules/commomComponent.module';
 
 @Component({
   selector: 'app-view-personagem',
