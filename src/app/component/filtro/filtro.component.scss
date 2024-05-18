@@ -1,3 +1,9 @@
 label {
     min-width: 85px;
 }
+
+:host ::ng-deep {
+    .p-accordion .p-accordion-header .p-accordion-header-link {
+        color: var(--themecolor);
+    }
+}
