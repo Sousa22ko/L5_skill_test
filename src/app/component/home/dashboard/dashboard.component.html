@@ -1,5 +1,5 @@
 <div class="container m-0 mw-100">
-    <div class="row mb-3">
+    <div class="row mb-3 px-2 gap-2">
         <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px'}">
             <p>Total de personagens:</p>
             <p><b *ngIf="personagens$ | async as data">{{ data.info.count }}</b></p>
