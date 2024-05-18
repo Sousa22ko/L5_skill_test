@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewLocalComponent } from './view-local.component';
+import { ViewTemplateComponent } from './view-template.component';
 
-describe('ViewLocalComponent', () => {
-  let component: ViewLocalComponent;
-  let fixture: ComponentFixture<ViewLocalComponent>;
+describe('ViewTemplateComponent', () => {
+  let component: ViewTemplateComponent;
+  let fixture: ComponentFixture<ViewTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewLocalComponent]
+      imports: [ViewTemplateComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ViewLocalComponent);
+    fixture = TestBed.createComponent(ViewTemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

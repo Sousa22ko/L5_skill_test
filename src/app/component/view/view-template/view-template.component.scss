@@ -1,0 +1,41 @@
+::ng-deep {
+    .viewTemplate{
+        .p-card-body, .p-card-content {
+            min-width: 100%;
+            min-height: 100%;
+            height: 100%;
+            padding: 0px;
+        }
+
+        b {
+            color: var(--themecolor);
+        }
+        .theme b {
+            color: #1e1e1e;
+        }
+    }
+}
+
+.part {
+    text-align: center;
+    align-content: center;
+}
+
+.theme {
+    background-color: var(--themecolor);
+}
+
+.mw-50 {
+    min-width: 50%;
+    width: 50%;
+}
+
+.mh-50 {
+    min-height: 50%;
+    height: 50%;
+}
+
+.mh-100 {
+    min-height: 100%;
+    height: 100%;
+}
