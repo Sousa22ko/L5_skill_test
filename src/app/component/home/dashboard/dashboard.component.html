@@ -1,18 +1,18 @@
 <div class="container m-0 mw-100">
     <div class="row mb-3 px-2 gap-2">
-        <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px'}">
+        <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px', 'align-content': 'center'}">
             <p>Total de personagens:</p>
             <p><b *ngIf="personagens$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px'}">
+        <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px', 'align-content': 'center'}">
             <p>Total de locais:</p>
             <p><b *ngIf="locais$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px'}">
+        <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px', 'align-content': 'center'}">
             <p>Total de episódios:</p>
             <p><b *ngIf="episodios$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px'}">
+        <p-card class="col container m-0 p-0 mw-100 text-center" [style]="{height: '150px', 'align-content': 'center'}">
             <div>
                 <p>Total de planetas:</p>
                 <p><b *ngIf="qtdPlanetas$ | async as data">{{ data.info.count }}</b></p>
@@ -44,11 +44,11 @@
                     <div class="col-10"></div> <!-- espaçamento -->
                 </div>
             </div>
-            <p-chart type="line" [data]="datachart" [options]="options"/>
+            <p-chart type="line" [data]="dataBarras" [options]="optionsBarras"/>
         </p-card>
         <p-card class="col-3" [style]="{height: '500px'}">
             <p>Personagens por gênero:</p>
-            <p-chart type="doughnut" [data]="data" />
+            <p-chart type="doughnut" [data]="dataDonnut" [options]="optionsDonnut"/>
         </p-card>
     </div>
 </div>

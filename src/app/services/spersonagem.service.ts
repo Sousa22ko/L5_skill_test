@@ -14,16 +14,8 @@ export class SpersonagemService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPersonagens(pageNumber: number): Observable<IDataPayload<Ipersonagem>>{
-    return this.httpClient.get<IDataPayload<Ipersonagem>>(`${BASEURL}/character/?page=${pageNumber}`);
-  }
-
   getPersonagem(id: number): Observable<Ipersonagem> {
     return this.httpClient.get<Ipersonagem>(`${BASEURL}/character/${id}`)
-  }
-
-  getGender(gender: string): Observable<IDataPayload<Ipersonagem>> {
-    return this.httpClient.get<IDataPayload<Ipersonagem>>(`${BASEURL}/character/?gender=${gender}`);
   }
 
   getFilter(queryParam: string): Observable<IDataPayload<Ipersonagem>> {

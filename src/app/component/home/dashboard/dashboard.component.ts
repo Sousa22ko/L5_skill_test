@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 import { ChartModule } from 'primeng/chart';
 
@@ -23,78 +23,51 @@ import { CommomComponentModule } from '@modules/commomComponent.module';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
   
-  personagens$: Observable<IDataPayload<Ipersonagem>>;
-  locais$: Observable<IDataPayload<Ilocalizacao>>;
-  episodios$: Observable<IDataPayload<Iepisodio>>;
-  qtdPlanetas$: Observable<IDataPayload<Ilocalizacao>>;
+  personagens$!: Observable<IDataPayload<Ipersonagem>>;
+  locais$!: Observable<IDataPayload<Ilocalizacao>>;
+  episodios$!: Observable<IDataPayload<Iepisodio>>;
+  qtdPlanetas$!: Observable<IDataPayload<Ilocalizacao>>;
   
   pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
   
-  datachart: any; // grafico de barras
-  data: any; // grafico donnut
+  dataBarras: any; // grafico de barras
+  dataDonnut: any; // grafico donnut
 
-  options = {
-    maintainAspectRatio: false,
-    aspectRatio: 0.8,
-    plugins: {
-      tooltip: {
-        mode: 'index',
-        intersect: false
-      },
-      legend: {
-        labels: {
-          color: "#FFF"
-        }
-      }
-    },
-    scales: {
-      x: {
-        stacked: true,
-        ticks: {
-          color: "#fff"
-        },
-        grid: {
-          color: "#fff",
-          drawBorder: false
-        }
-      },
-      y: {
-        stacked: true,
-        ticks: {
-          color: "#fff"
-        },
-        grid: {
-          color: "#fff",
-          drawBorder: false
-        }
-      }
-    }
-  };
+  //configurações extras dos graficos
+  optionsBarras: any;
+  optionsDonnut: any;
 
 
   constructor(private personagemS: SpersonagemService, private localizacaoS: SlocalizacaoService, private episodioS: SepisodioService) {
-    this.personagens$ = this.personagemS.getPersonagens(0);
-    this.locais$ = this.localizacaoS.getLocais(0);
-    this.episodios$ = this.episodioS.getEpisodios(this.pageEpisodes);
-    this.qtdPlanetas$ = this.localizacaoS.getPlanetas();
+  }
+  
+  ngOnInit(): void {
+    // prepara options
+    this.prepareOptionData();
 
-    this.processData();
-    this.processDataChart();
+
+    this.personagens$ = this.personagemS.getFilter('');
+    this.locais$ = this.localizacaoS.getFilter('');
+    this.episodios$ = this.episodioS.getFilter('');
+    this.qtdPlanetas$ = this.localizacaoS.getFilter('type=planet');
+  
+    this.processDataDonnut();
+    this.processDataBarras();
   }
 
-  processDataChart(): void{
-
+  // prepara o grafico
+  processDataBarras(): void{
     let listEpisodes: string[] = [];
     let listPersEpisodes: number[] = [];
     this.episodios$.subscribe(resp => {
       resp.results.forEach(ep => {
-        listEpisodes.push(ep.episode);
-        listPersEpisodes.push(ep.characters.length);
+        listEpisodes.push(ep.episode); //registra o nome do episódio
+        listPersEpisodes.push(ep.characters.length); // registra quantos personagens existem em cada episodio
       });
     
-      this.datachart = {
+      this.dataBarras = {
         labels: listEpisodes,
         datasets: [
           {
@@ -110,6 +83,32 @@ export class DashboardComponent {
     });
   }
 
+    // prepara o grafico
+    processDataDonnut() {
+      let values: number [] = []
+  
+      // A API do Rick and Morty não possui no modelo rest uma forma de listar eficientemente os generos, então vou ter que filtrar
+      // os 4 separadamente
+      this.customForkJoin().subscribe(resp => {
+        values.push(resp[0].info.count); // quantidade males
+        values.push(resp[1].info.count); // quantidade females
+        values.push(resp[2].info.count); // quantidade genderless
+        values.push(resp[3].info.count); // quantidade unknown
+  
+        this.dataDonnut = {
+          labels: ['Male', 'Female', 'Genderless', 'Unknown'],
+          datasets: [
+            {
+              data: values,
+              backgroundColor: ["#2F8DFF", "#FFC6B1", "#FFFFFF", "#000000"],
+              hoverBackgroundColor: ["#2F8DFF", "#FFC6B1", "#FFFFFF", "#000000"]
+            }
+          ]
+        };
+      });
+    }
+
+  //passa a pagina do grafico de barras
   changePageEpisode(op: string): void {
     if(op !== 'up' && op !== 'dw') {
       return;
@@ -119,42 +118,69 @@ export class DashboardComponent {
       this.pageEpisodes -= 1;
     }
 
-    this.episodios$ = this.episodioS.getEpisodios(this.pageEpisodes);
-    this.processDataChart();
-
+    this.episodios$ = this.episodioS.getFilter(`page=${this.pageEpisodes}`);
+    this.processDataBarras();
   }
 
   //espera as 4 requisições de genero receberem as respostas antes de retornar pro processData
   customForkJoin (): Observable<any[]> {
-    const males = this.personagemS.getGender("Male");
-    const females = this.personagemS.getGender("Female");
-    const genderless = this.personagemS.getGender("Genderless");
-    const unknown = this.personagemS.getGender("Unknown");
+    const males = this.personagemS.getFilter("gender=Male");
+    const females = this.personagemS.getFilter("gender=Female");
+    const genderless = this.personagemS.getFilter("gender=Genderless");
+    const unknown = this.personagemS.getFilter("gender=Unknown");
     return forkJoin([males, females, genderless, unknown]);
   }
 
-  processData() {
-    let values: number [] = []
+  // carrega os dados de options dos 2 graficos
+  prepareOptionData(): void {
 
-    // A API do Rick and Morty não possui no modelo rest uma forma de listar eficientemente os generos, então vou ter que filtrar
-    // os 4 separadamente
-    this.customForkJoin().subscribe(resp => {
-      values.push(resp[0].info.count); // quantidade males
-      values.push(resp[1].info.count); // quantidade females
-      values.push(resp[2].info.count); // quantidade genderless
-      values.push(resp[3].info.count); // quantidade unknown
-
-      this.data = {
-        labels: ['Male', 'Female', 'Genderless', 'Unknown'],
-        datasets: [
-          {
-            data: values,
-            backgroundColor: ["#2F8DFF", "#FFC6B1", "#FFFFFF", "#000000"],
-            hoverBackgroundColor: ["#2F8DFF", "#FFC6B1", "#FFFFFF", "#000000"]
+    this.optionsDonnut =  {
+      cutout: '60%',
+      plugins: {
+          legend: {
+              labels: {
+                  color: "#FFF"
+              }
           }
-        ]
-      };
-    });
-  }
+      }
+    };
 
+    this.optionsBarras = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
+      plugins: {
+        tooltip: {
+          mode: 'index',
+          intersect: false
+        },
+        legend: {
+          labels: {
+            color: "#FFF"
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: {
+            color: "#fff"
+          },
+          grid: {
+            color: "#fff",
+            drawBorder: false
+          }
+        },
+        y: {
+          stacked: true,
+          ticks: {
+            color: "#fff"
+          },
+          grid: {
+            color: "#fff",
+            drawBorder: false
+          }
+        }
+      }
+    };
+  }
 }

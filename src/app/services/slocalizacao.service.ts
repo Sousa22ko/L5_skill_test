@@ -14,16 +14,8 @@ export class SlocalizacaoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getLocais(pageNumber: number): Observable<IDataPayload<Ilocalizacao>>{
-    return this.httpClient.get<IDataPayload<Ilocalizacao>>(`${BASEURL}/location/?page=${pageNumber}`);
-  }
-
   getLocal(id: number): Observable<Ilocalizacao> {
     return this.httpClient.get<Ilocalizacao>(`${BASEURL}/location/${id}`)
-  }
-
-  getPlanetas (): Observable<IDataPayload<Ilocalizacao>> {
-    return this.httpClient.get<IDataPayload<Ilocalizacao>>(`${BASEURL}/location/?type=planet`);
   }
 
   getFilter(queryParam: string): Observable<IDataPayload<Ilocalizacao>> {

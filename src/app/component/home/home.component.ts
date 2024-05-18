@@ -40,8 +40,8 @@ export class HomeComponent {
   @ViewChild(PersonagemComponent) personagem?: PersonagemComponent;
   @ViewChild(LocaisComponent) local?: LocaisComponent;
   @ViewChild(EpisodiosComponent) episodio?: EpisodiosComponent;
-  @ViewChild(FiltroComponent) filtro?: FiltroComponent;
 
+  //realiza a pesquisa com o filtro
   pesquisar(event: IeventFilter): void {
     this.filtroAtual = event
     if(event.pagina == 1) {
@@ -93,37 +93,31 @@ export class HomeComponent {
       this.filtroAtual = {pagina: 3};
       this.onPageChange({page: 1});
     }
-
-    if(this.openAccordion != null) {
-      this.filtro?.open();
-    }
   }
   
   setTotalRecords(qtd: number): void {
     this.totalRecords = qtd;
   } 
 
+  //processa a paginação de todas as telas
   onPageChange(event: any): void {
-    let queryParam = `page=${event.page}&${this.filtroAtual?.filtro? this.filtroAtual?.filtro : ''}`;    
+    // por algum motivo desconhecido pela mente humana a api começa na pagina 1 então por isso é somado 1 na pagina
+    let queryParam = `page=${event.page+1}&${this.filtroAtual?.filtro? this.filtroAtual?.filtro : ''}`;    
     
     if(this.filtroAtual?.pagina == 1) {
-      this.personagem?.filtrar(queryParam).subscribe({next: resp => {
+      this.personagem?.filtrar(queryParam).subscribe(resp => {
         this.totalRecords = resp.info.count;
-      }});
+      });
     }
     else if(this.filtroAtual?.pagina == 2) {
-      this.local?.filtrar(queryParam).subscribe({next: resp => {
+      this.local?.filtrar(queryParam).subscribe(resp => {
         this.totalRecords = resp.info.count;
-      }});
+      });
     }
     else if(this.filtroAtual?.pagina == 3) {
-      this.episodio?.filtrar(queryParam).subscribe({next: resp => {
+      this.episodio?.filtrar(queryParam).subscribe(resp => {
         this.totalRecords = resp.info.count;
-      }});
+      });
     }
   }
-
-  accordionChange(event: any): void {
-    this.openAccordion = event;
-  } 
 }

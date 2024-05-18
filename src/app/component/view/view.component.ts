@@ -32,6 +32,7 @@ export class ViewComponent implements OnInit{
     this.router.params.subscribe(res => {
       this.tipo = res['tipo'];
       this.id = res['id'];
+      
    
       if(this.tipo == 'personagem') {
         this.data$ = this.pService.getPersonagem(this.id);
@@ -44,6 +45,10 @@ export class ViewComponent implements OnInit{
       }
       else
         this.data$ = of();
+
+        this.data$.subscribe(resp => {
+          console.log(resp)
+        })
     })
   }
 

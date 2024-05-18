@@ -13,11 +13,7 @@ import { BASEURL } from '../util/configs';
 export class SepisodioService {
 
   constructor(private httpClient: HttpClient) { }
-
-  getEpisodios(pageNumber: number): Observable<IDataPayload<Iepisodio>>{
-    return this.httpClient.get<IDataPayload<Iepisodio>>(`${BASEURL}/episode/?page=${pageNumber}`);
-  }
-
+  
   getEpisodio(id: number): Observable<Iepisodio> {
     return this.httpClient.get<Iepisodio>(`${BASEURL}/episode/${id}`)
   }

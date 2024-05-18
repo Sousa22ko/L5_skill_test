@@ -1,5 +1,5 @@
 <p-panel header="Rick and Morty">
-    <app-filtro [activeIndex]="activeIndex" (pesquisar)="pesquisar($event)" (accordionState)="accordionChange($event)"></app-filtro>
+    <app-filtro [activeIndex]="activeIndex" (pesquisar)="pesquisar($event)"></app-filtro> 
     <p-tabView [(activeIndex)]="activeIndex" (onChange)="changeTab($event)">
         <p-tabPanel header="Dashboard">
             <app-dashboard></app-dashboard>

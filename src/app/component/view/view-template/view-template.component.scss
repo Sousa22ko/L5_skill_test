@@ -7,20 +7,19 @@
             padding: 0px;
         }
 
-        b {
-            color: var(--themecolor);
-        }
         .theme b {
             color: #1e1e1e;
         }
     }
 }
 
+//cada uma das 4 partes do view
 .part {
     text-align: center;
     align-content: center;
 }
 
+// as 2 partes que tem fundo de cor diferente
 .theme {
     background-color: var(--themecolor);
 }
