@@ -2,3 +2,31 @@
     text-align: center;
     font-size: xx-large;
 }
+
+:host ::ng-deep {
+//     span.p-tabview.p-tabview-nav li.p-highlight.p-tabview-nav-link{
+//         color: var(--themecolor);
+//     }
+
+    // span.p-tabview-title.ng-star-inserted {
+    //     color: var(--themecolor);  
+    //     text-decoration-color: var(--themecolor) !important; 
+
+    //     // color: rgba(var(--themecolor), var(--themecolor,1))
+    // }
+
+    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+        color: var(--themecolor) !important;
+    }
+
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        color: rgba(255, 255, 255, 0.6) ; 
+        &:hover {
+            color: var(--themecolor);
+        }
+    }
+
+    .p-tabview .p-tabview-nav .p-tabview-ink-bar {
+        background-color: var(--themecolor);
+    }
+}
