@@ -9,7 +9,7 @@ b {
 
     .cardLocal:hover {
         // nega o aumento do brilho do hover
-        #img, .botoes, .data, #bold, p-button {
+        .botoes, .data, #bold, p-button {
             transition: all 0.3s;
             filter: brightness(80%);
         }
