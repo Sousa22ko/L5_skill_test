@@ -4,16 +4,6 @@
 }
 
 :host ::ng-deep {
-//     span.p-tabview.p-tabview-nav li.p-highlight.p-tabview-nav-link{
-//         color: var(--themecolor);
-//     }
-
-    // span.p-tabview-title.ng-star-inserted {
-    //     color: var(--themecolor);  
-    //     text-decoration-color: var(--themecolor) !important; 
-
-    //     // color: rgba(var(--themecolor), var(--themecolor,1))
-    // }
 
     .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
         color: var(--themecolor) !important;
