@@ -1,77 +1,79 @@
-<div class="container" *ngIf="activeIndex() != 0">
-    <p-accordion class="filtroAccordion" [activeIndex]="openAccordion" (onOpen)="open()" (onClose)="close()">
-        <p-accordionTab header="Filtros" *ngIf="activeIndex() == 1">
-            <div class="filtros">
-                <div class="item">
-                    <label> Nome: </label>
-                    <input type="text" pInputText [(ngModel)]="nomeFiltro" placeholder="Rick"/>
-                </div>
-                <div class="item">
-                    <label> Status: </label>
-                    <p-dropdown 
-                        [options]="status" 
-                        [(ngModel)]="statusFiltro" 
-                        optionLabel="name" 
-                        placeholder="Selecione o status da personagem" />
-                </div>
-                <div class="item">
-                    <label> Especie: </label>
-                    <input type="text" pInputText [(ngModel)]="specieFiltro" placeholder="Human"/>
-                </div>
-                <div class="item">
-                    <label> Tipo: </label>
-                    <input type="text" pInputText [(ngModel)]="typeFiltro" placeholder="Genetic experiment"/>
-                </div>
-                <div class="item">
-                    <label> Gênero: </label>
-                    <p-dropdown 
-                        [options]="gender" 
-                        [(ngModel)]="genderFiltro" 
-                        optionLabel="name" 
-                        placeholder="Selecione o gênero da personagem" />
-                </div>
-            </div>
-            <div class="actions">
-                <p-button (click)="limparFiltros()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Limpar filtros</p-button>
-                <p-button (click)="filtrar()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Filtrar</p-button>
-            </div>
-        </p-accordionTab>
+<div class="container m-0 mw-100" *ngIf="activeIndex() != 0">
+    <p-accordion [activeIndex]="openAccordion" (onOpen)="open()" (onClose)="close()">
+        <p-accordionTab header="Filtro">
+            <div class="container m-0 p-0 mw-100" >
+                <div class="row">
+                    <div class="col-11">  
+                        <div *ngIf="activeIndex() == 1" class="container m-0 p-0 mw-100">
+                            <div class="row mb-2">
+                                <div class="col-4">
+                                    <label> Nome: </label>
+                                    <input type="text" pInputText [(ngModel)]="nomeFiltro" placeholder="Rick"/>
+                                </div>
+                                <div class="col-4">
+                                    <label> Status: </label>
+                                    <p-dropdown 
+                                        [options]="status" [(ngModel)]="statusFiltro" 
+                                        optionLabel="name" placeholder="Selecione o status da personagem" />
+                                </div>
+                                <div class="col-4">
+                                    <label> Especie: </label>
+                                    <input type="text" pInputText [(ngModel)]="specieFiltro" placeholder="Human"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label> Tipo: </label>
+                                    <input type="text" pInputText [(ngModel)]="typeFiltro" placeholder="Genetic experiment"/>
+                                </div>
+                                <div class="col-4">
+                                    <label> Gênero: </label>
+                                    <p-dropdown 
+                                        [options]="gender" [(ngModel)]="genderFiltro" 
+                                        optionLabel="name" placeholder="Selecione o gênero da personagem" />
+                                </div>
+                            </div>
+                        </div>
 
-        <p-accordionTab header="Filtros" *ngIf="activeIndex() == 2">
-            <div class="filtros">
-                <div class="item">
-                    <label> Nome: </label>
-                    <input type="text" pInputText [(ngModel)]="nome2Filtro" placeholder="Earth (C-137)"/>
-                </div>
-                <div class="item">
-                    <label> Tipo: </label>
-                    <input type="text" pInputText [(ngModel)]="type2Filtro" placeholder="Planet"/>
-                </div>
-                <div class="item">
-                    <label> Dimensão: </label>
-                    <input type="text" pInputText [(ngModel)]="dimensionFiltro" placeholder="unknown"/>
-                </div>
-            </div>
-            <div class="actions">
-                <p-button (click)="limparFiltros()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Limpar filtros</p-button>
-                <p-button (click)="filtrar()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Filtrar</p-button>
-            </div>
-        </p-accordionTab>
+                        <div *ngIf="activeIndex() == 2" class="container m-0 p-0 mw-100">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label> Nome: </label>
+                                    <input type="text" pInputText [(ngModel)]="nome2Filtro" placeholder="Earth (C-137)"/>
+                                </div>
+                                <div class="col-4">
+                                    <label> Tipo: </label>
+                                    <input type="text" pInputText [(ngModel)]="type2Filtro" placeholder="Planet"/>
+                                </div>
+                                <div class="col-4">
+                                    <label> Dimensão: </label>
+                                    <input type="text" pInputText [(ngModel)]="dimensionFiltro" placeholder="unknown"/>   
+                                </div>
+                            </div>
+                        </div>
 
-        <p-accordionTab header="Filtros" *ngIf="activeIndex() == 3">
-            <div class="filtros">
-                <div class="item">
-                    <label> Nome: </label>
-                    <input type="text" pInputText [(ngModel)]="nome3Filtro" placeholder="The Ricklantis Mixup"/>
+                        <div *ngIf="activeIndex() == 3" class="container m-0 p-0 mw-100">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label> Nome: </label>
+                                    <input type="text" pInputText [(ngModel)]="nome3Filtro" placeholder="The Ricklantis Mixup"/>
+                                </div>
+                                <div class="col-4">
+                                    <label> Episódio: </label>
+                                    <input type="text" pInputText [(ngModel)]="episodeFiltro" placeholder="S03E07"/>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1 container m-0 p-0 mw-100">
+                        <div class="row mb-2">
+                            <p-button (click)="limparFiltros()" severity="success" [style]="{ 'border-radius': '4px', width: '100%', 'place-content': 'center'}">Limpar filtros</p-button>
+                        </div>
+                        <div class="row">
+                            <p-button (click)="filtrar()" severity="success" [style]="{ 'border-radius': '4px', width: '100%', 'place-content': 'center'}">Filtrar</p-button>
+                        </div>
+                    </div>
                 </div>
-                <div class="item">
-                    <label> Episódio: </label>
-                    <input type="text" pInputText [(ngModel)]="episodeFiltro" placeholder="S03E07"/>
-                </div>
-            </div>
-            <div class="actions">
-                <p-button (click)="limparFiltros()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Limpar filtros</p-button>
-                <p-button (click)="filtrar()" severity="success" [style]="{ width: '100%', 'place-content': 'center'}">Filtrar</p-button>
             </div>
         </p-accordionTab>
     </p-accordion>
