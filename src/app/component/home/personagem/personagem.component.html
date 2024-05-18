@@ -1,4 +1,4 @@
-<ng-container *ngIf="personagens$ | async as dados"> 
+<ng-container *ngIf="personagens$ | async as dados; else carregando"> 
     <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)" [style]="{ height: '100px', overflow: 'hidden'}">
         <div class="linhaCard" >
             <div>
@@ -16,3 +16,6 @@
         </div>
     </p-card>
 </ng-container>
+<ng-template #carregando>
+    <p-progressSpinner ariaLabel="loading" />
+</ng-template>

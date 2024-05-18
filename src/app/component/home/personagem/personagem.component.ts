@@ -1,6 +1,6 @@
 import { Component, OnInit, output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 import { SpersonagemService } from '@services/spersonagem.service';
 
@@ -23,6 +23,7 @@ export class PersonagemComponent implements OnInit{
 
   personagens$!: Observable<IDataPayload<Ipersonagem>>;
   setTotalRecords = output<number>();
+  error = output<number>();
 
   constructor(private service: SpersonagemService, private router: Router) {
   }
@@ -31,7 +32,11 @@ export class PersonagemComponent implements OnInit{
     this.personagens$ = this.service.getPersonagens(1);
     this.personagens$.subscribe(resp => {
       this.setTotalRecords.emit(resp.info.count);
-    })
+    },catchError (error => {
+      this.error = error.status
+      return of(null);
+    }
+  ));
   }
 
   // vai para a pagina de detalhes do personagem

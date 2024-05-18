@@ -1,4 +1,4 @@
-<ng-container *ngIf="locais$ | async as dados"> 
+<ng-container *ngIf="locais$ | async as dados; else carregando"> 
     <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)">
         <div class="linhaCard">
             <div class="data">
@@ -15,12 +15,7 @@
             </div>
         </div>
     </p-card>
-    <!-- <div class="paginator">
-        <p-paginator 
-            *ngIf="locais$ | async as dados"
-            (onPageChange)="onPageChange($event)" 
-            [first]="first"
-            [rows]="20" 
-            [totalRecords]="dados.info.count" />
-    </div> -->
 </ng-container>
+<ng-template #carregando>
+    <p-progressSpinner ariaLabel="loading" />
+</ng-template>
