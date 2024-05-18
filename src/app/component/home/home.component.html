@@ -1,4 +1,4 @@
-<p-panel header="Header">
+<p-panel header="Rick and Morty">
     <app-filtro [activeIndex]="activeIndex" (pesquisar)="pesquisar($event)" (accordionState)="accordionChange($event)"></app-filtro>
     <p-tabView [(activeIndex)]="activeIndex" (onChange)="changeTab($event)">
         <p-tabPanel header="Dashboard">
@@ -19,8 +19,8 @@
                 <app-episodios (setTotalRecords)="setTotalRecords($event)"></app-episodios>
             </ng-template>
         </p-tabPanel>
-        <div *ngIf="errorCode == 404">
-            Vazio aqui ... :/
+        <div class="noResponse" *ngIf="errorCode == 404">
+            Nenhum dado encontrado
         </div>
         <div class="paginator">
             <p-paginator 
