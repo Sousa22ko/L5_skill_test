@@ -8,9 +8,30 @@
     .p-panel-content {
         min-height: 95vh;
     }
+
+    b {
+        color: var(--themecolor);
+    }
+
+    .p-card-body, .p-card-content {
+        padding: 0px;
+    }
+
+    .cardHover:hover {
+        // nega o aumento do brilho do hover
+        #img, .botoes, .data, #bold, p-button {
+            transition: all 0.3s;
+            filter: brightness(80%);
+        }
+    }
+
+    .cardHover:hover {
+        cursor: pointer;
+        transition: all 0.3s;
+        filter: brightness(120%);
+    }
 }
 
 .mw-100 {
     min-width: 100%;
 }
-

@@ -22,14 +22,13 @@ import { CommomComponentModule } from '@modules/commomComponent.module';
 export class LocaisComponent implements OnInit{
 
   locais$!: Observable<IDataPayload<Ilocalizacao>>;
-  pagina: number = 1;
   setTotalRecords = output<number>();  
 
   constructor(private service: SlocalizacaoService, private router: Router) {
   }
   
   ngOnInit(): void {
-    this.locais$ = this.service.getLocais(this.pagina);
+    this.locais$ = this.service.getFilter('');
     this.locais$.subscribe(resp => {
       this.setTotalRecords.emit(resp.info.count);
     })

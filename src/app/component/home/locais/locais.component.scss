@@ -1,28 +1,3 @@
-b {
-    color: var(--themecolor);
-}
-
-::ng-deep {
-    .p-card-body, .p-card-content {
-        padding: 0px;
-    }
-
-    .cardLocal:hover {
-        // nega o aumento do brilho do hover
-        .botoes, .data, #bold, p-button {
-            transition: all 0.3s;
-            filter: brightness(80%);
-        }
-    }
-}
-
-.cardLocal:hover {
-    cursor: pointer;
-    transition: all 0.3s;
-    filter: brightness(120%);
-    
-}
-
 .center {
     align-content: center;
 }

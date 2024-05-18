@@ -24,7 +24,7 @@ export class EpisodiosComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.episodios$ = this.service.getEpisodios(1);
+    this.episodios$ = this.service.getFilter('');
     this.episodios$.subscribe(resp => {
       this.setTotalRecords.emit(resp.info.count);
     })

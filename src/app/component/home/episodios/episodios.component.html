@@ -1,6 +1,6 @@
 <ng-container *ngIf="episodios$ | async as dados; else carregando"> 
     <div *ngFor="let item of dados.results" class="container mw-100 m-0 p-0">
-        <div (click)="goto(item.id)" class="row mb-2 cardEpisodio">
+        <div (click)="goto(item.id)" class="row mb-2 cardHover">
             <p-card (click)="goto(item.id)">
                 <div class="container m-0 p-0 mw-100">
                     <div class="row mb-2 p-2 align-items-center">
