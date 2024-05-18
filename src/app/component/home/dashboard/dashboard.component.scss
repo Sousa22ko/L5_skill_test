@@ -1,56 +1,11 @@
-.container {
-    p-card {
-        padding: 5px;
-    }
-
-    b {
-        color: var(--themecolor);
-    }
-
-    .line1 {
-        display: flex;
-        width: 100%;
-
-        .card-l1 {
-            flex: 1;
-            text-align: center;
-
-            &.lmaior {
-                flex: 2 !important;
-            }
-        }
-
-
-        .generos {
-            display: flex;
-            flex-direction: row;
-
-            .generoDiv {
-                flex: 1;
-            }
-        }
-    }
-
-    .line2 {
-        display: flex;
-        width: 100%;
-
-        .lineheade2 {
-            display: flex ;
-
-            .controle, p-button {
-                align-self: center;
-                padding-left: 10px;
-            }
-        }
-
-        .parte1 {
-            flex: 3;
-        }
-
-        .parte2 {
-            flex: 1;
-        }
-    }
+.mw-100 {
+    min-width: 100%;
 }
 
+b {
+    color: var(--themecolor);
+}
+
+p-button.button {
+    border-radius: 4px;
+}

@@ -1,36 +1,52 @@
-<div class="container">
-    <div class="line1">
-        <p-card class="card-l1" [style]="{height: '150px'}">
+<div class="container m-0 mw-100">
+    <div class="row mb-3">
+        <p-card class="col" [style]="{height: '150px'}">
             <p>Total de personagens:</p>
             <p><b *ngIf="personagens$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="card-l1" [style]="{height: '150px'}">
+        <p-card class="col" [style]="{height: '150px'}">
             <p>Total de locais:</p>
             <p><b *ngIf="locais$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="card-l1" [style]="{height: '150px'}">
+        <p-card class="col" [style]="{height: '150px'}">
             <p>Total de episódios:</p>
             <p><b *ngIf="episodios$ | async as data">{{ data.info.count }}</b></p>
         </p-card>
-        <p-card class="card-l1" [style]="{height: '150px'}">
-            <div class="generoDiv">
+        <p-card class="col" [style]="{height: '150px'}">
+            <div>
                 <p>Total de planetas:</p>
                 <p><b *ngIf="qtdPlanetas$ | async as data">{{ data.info.count }}</b></p>
             </div>
         </p-card>
     </div>
-    <div class="line2">
-        <p-card class="card-l2 parte1" [style]="{height: '500px'}">
-            <div class="lineheade2">
-                <p>Quantidade de personagens que aparecem nos episódios: </p>
-                <div class="controle">
-                    <p-button severity="success" [disabled]="pageEpisodes == 1" (click)="changePageEpisode('dw')"><</p-button>
-                    <p-button severity="success" *ngIf="episodios$ | async as data" [disabled]="data.results.length < 20" (click)="changePageEpisode('up')">></p-button>
+    <div class="row">
+        <p-card class="col-9" [style]="{height: '500px'}">
+            <div class="container">
+                <p class="row">Quantidade de personagens que aparecem nos episódios: </p>
+                <div class="row container">
+                    <p-button 
+                    class="col-1 button"
+                    severity="success" 
+                    [style]="{'border-radius': '4px'}"
+                    [disabled]="pageEpisodes == 1" 
+                    (click)="changePageEpisode('dw')"
+                    icon="pi pi-arrow-left">
+                    </p-button>
+                    <p-button 
+                    class="col-1 button"
+                    severity="success" 
+                    [style]="{'border-radius': '4px'}"
+                    [disabled]="data.results.length < 20"
+                    *ngIf="episodios$ | async as data" 
+                    (click)="changePageEpisode('up')"
+                    icon="pi pi-arrow-right">
+                    </p-button>
+                    <div class="col-10"></div> <!-- espaçamento -->
                 </div>
             </div>
             <p-chart type="line" [data]="datachart" [options]="options"/>
         </p-card>
-        <p-card class="card-l2 parte2" [style]="{height: '500px'}">
+        <p-card class="col-3" [style]="{height: '500px'}">
             <p>Personagens por gênero:</p>
             <p-chart type="doughnut" [data]="data" />
         </p-card>
