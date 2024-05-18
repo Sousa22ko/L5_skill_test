@@ -1,6 +1,6 @@
 import { Component, OnInit, output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 
 import { IDataPayload } from '@models/IdataPayload.model';
 import { Ilocalizacao } from '@models/Ilocalizacao.model';
@@ -31,7 +31,6 @@ export class LocaisComponent implements OnInit{
   ngOnInit(): void {
     this.locais$ = this.service.getLocais(this.pagina);
     this.locais$.subscribe(resp => {
-      console.log("emit")
       this.setTotalRecords.emit(resp.info.count);
     })
   }

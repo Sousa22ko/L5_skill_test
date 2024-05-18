@@ -11,6 +11,7 @@ import { IeventFilter } from '@models/IeventFilter.model';
 import { PaginatorModule } from 'primeng/paginator';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -30,31 +31,56 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent {
 
+  openAccordion: number | null = null;
   activeIndex: number = 0;
   filtroAtual: IeventFilter | undefined;
   totalRecords: number = 0;
-  totalRecordsPersonagem: number = 0;
-  totalRecordsLocais: number = 0;
-  totalRecordsEpisodios: number = 0;
+  errorCode: number = 0;
 
   @ViewChild(PersonagemComponent) personagem?: PersonagemComponent;
   @ViewChild(LocaisComponent) local?: LocaisComponent;
   @ViewChild(EpisodiosComponent) episodio?: EpisodiosComponent;
+  @ViewChild(FiltroComponent) filtro?: FiltroComponent;
 
   pesquisar(event: IeventFilter): void {
     this.filtroAtual = event
     if(event.pagina == 1) {
-      this.personagem?.filtrar(event.filtro ? event.filtro : '');
+      this.personagem?.filtrar(event.filtro ? event.filtro : '').subscribe({
+        next: resp => {
+          this.errorCode = 200
+          this.totalRecords = resp.info.count;
+        }, error: (err: any) => { 
+          this.errorCode = err.status
+          this.totalRecords = 0;
+        }
+      });
     }
     else if(event.pagina == 2) {
-      this.local?.filtrar(event.filtro ? event.filtro : '');
+      this.local?.filtrar(event.filtro ? event.filtro : '').subscribe({
+        next: resp => {
+          this.errorCode = 200
+          this.totalRecords = resp.info.count;
+        }, error: (err: any) => { 
+          this.errorCode = err.status
+          this.totalRecords = 0;
+        }
+      });
     }
     else if(event.pagina == 3) {
-      this.episodio?.filtrar(event.filtro ? event.filtro : '');
+      this.episodio?.filtrar(event.filtro ? event.filtro : '').subscribe({
+        next: resp => {
+          this.errorCode = 200
+          this.totalRecords = resp.info.count;
+        }, error: (err: any) => { 
+          this.errorCode = err.status
+          this.totalRecords = 0;
+        }
+      });
     }
   }
 
   changeTab(event: any) {
+    // this.activeIndex = this.activeIndex != 0 ? event.index : 0 
     if(event.index == 1) {
       this.filtroAtual = {pagina: 1};
       this.onPageChange({page: 1});
@@ -67,6 +93,10 @@ export class HomeComponent {
       this.filtroAtual = {pagina: 3};
       this.onPageChange({page: 1});
     }
+
+    if(this.openAccordion != null) {
+      this.filtro?.open();
+    }
   }
   
   setTotalRecords(qtd: number): void {
@@ -74,22 +104,26 @@ export class HomeComponent {
   } 
 
   onPageChange(event: any): void {
-    let queryParam = `page=${event.page+1}&${this.filtroAtual?.filtro}`;    
+    let queryParam = `page=${event.page}&${this.filtroAtual?.filtro? this.filtroAtual?.filtro : ''}`;    
     
     if(this.filtroAtual?.pagina == 1) {
-      this.personagem?.filtrar(queryParam).subscribe(resp => {
+      this.personagem?.filtrar(queryParam).subscribe({next: resp => {
         this.totalRecords = resp.info.count;
-      });
+      }});
     }
     else if(this.filtroAtual?.pagina == 2) {
-      this.local?.filtrar(queryParam).subscribe(resp => {
+      this.local?.filtrar(queryParam).subscribe({next: resp => {
         this.totalRecords = resp.info.count;
-      });
+      }});
     }
     else if(this.filtroAtual?.pagina == 3) {
-      this.episodio?.filtrar(queryParam).subscribe(resp => {
+      this.episodio?.filtrar(queryParam).subscribe({next: resp => {
         this.totalRecords = resp.info.count;
-      });
+      }});
     }
   }
+
+  accordionChange(event: any): void {
+    this.openAccordion = event;
+  } 
 }

@@ -1,4 +1,4 @@
-<ng-container *ngIf="episodios$ | async as dados"> 
+<ng-container *ngIf="episodios$ | async as dados; else carregando"> 
     <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)">
         <div class="linhaCard">
             <div class="data">
@@ -16,3 +16,8 @@
         </div>
     </p-card>
 </ng-container>
+<ng-template #carregando>
+    <div class="loading">
+        <p-progressSpinner ariaLabel="loading" />
+    </div>
+</ng-template>

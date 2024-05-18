@@ -1,5 +1,5 @@
 <div class="container" *ngIf="activeIndex() != 0">
-    <p-accordion class="filtroAccordion" [activeIndex]="openAccordion">
+    <p-accordion class="filtroAccordion" [activeIndex]="openAccordion" (onOpen)="open()" (onClose)="close()">
         <p-accordionTab header="Filtros" *ngIf="activeIndex() == 1">
             <div class="filtros">
                 <div class="item">

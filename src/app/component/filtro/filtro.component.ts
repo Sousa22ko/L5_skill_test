@@ -12,9 +12,10 @@ import { AdvancedComponentModule } from '@modules/advancedComponent.module';
 export class FiltroComponent {
 
   activeIndex = input(0);
+  accordionState = output<number | null>();
   pesquisar = output<IeventFilter>();
 
-  openAccordion: any = undefined;
+  openAccordion: number | null = null;
 
 
   // --------------- campos de personagem ----------------
@@ -64,7 +65,7 @@ export class FiltroComponent {
       //reseta a consulta para o padrão
       this.pesquisar.emit({pagina: 1});
       //reabre a aba de filtro pois os campos atualizados fecham o filtro
-      this.openAccordion = 1;
+      // this.openAccordion = 1;
     }
     else if(this.activeIndex() == 2) {
       let reset = (this.nome2Filtro.length > 0) || (this.type2Filtro.length > 0) || (this.dimensionFiltro.length > 0) 
@@ -79,7 +80,7 @@ export class FiltroComponent {
       //reseta a consulta para o padrão
       this.pesquisar.emit({pagina: 2});
       //reabre a aba de filtro pois os campos atualizados fecham o filtro
-      this.openAccordion = 1;
+      // this.openAccordion = 1;
     }
     else if(this.activeIndex() == 3) {
       let reset = (this.nome3Filtro.length > 0) || (this.episodeFiltro.length > 0)
@@ -93,7 +94,7 @@ export class FiltroComponent {
       //reseta a consulta para o padrão
       this.pesquisar.emit({pagina: 3});
       //reabre a aba de filtro pois os campos atualizados fecham o filtro
-      this.openAccordion = 1;
+      // this.openAccordion = 1;
     }
 
   }
@@ -109,7 +110,7 @@ export class FiltroComponent {
 
       if(queryParams.length > 0){ // verifica se existe algum filtro
         this.pesquisar.emit({pagina: 1, filtro: queryParams})
-        this.openAccordion = 1;
+        // this.openAccordion = 1;
       }
     } 
     else if (this.activeIndex() == 2) {
@@ -120,7 +121,7 @@ export class FiltroComponent {
   
       if(queryParams.length > 0){ // verifica se existe algum filtro
         this.pesquisar.emit({pagina: 2, filtro: queryParams})
-        this.openAccordion = 1;
+        // this.openAccordion = 1;
       }      
     }
     else if (this.activeIndex() == 3) {
@@ -130,10 +131,18 @@ export class FiltroComponent {
   
       if(queryParams.length > 0){ // verifica se existe algum filtro
         this.pesquisar.emit({pagina: 3, filtro: queryParams})
-        this.openAccordion = 1;
+        // this.openAccordion = 1;
       }
     }
   }
-  
 
+  // abrir e fechar o accordion
+  open () {
+    this.openAccordion = 0;
+    this.accordionState.emit(0);
+  }
+  close () {
+    this.openAccordion = null;
+    this.accordionState.emit(null);
+  }
 }
