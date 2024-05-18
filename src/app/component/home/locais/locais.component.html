@@ -3,7 +3,7 @@
         <p-card (click)="goto(item.id)">
             <div class="container m-0 p-0 mw-100">
                 <div class="row mb-2 p-2">
-                    <div class="col-10 row">
+                    <div class="col-10 row align-items-center">
                         <div class="col-4">
                             <div class="nome"><p><b id="bold">Nome do planeta:</b></p>{{ item.name }}</div>
                         </div>
@@ -14,7 +14,7 @@
                             <div class="tipo"><p><b id="bold">Dimensão:</b></p>{{ item.dimension }}</div>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 center">
                         <p-button [style]="{'border-radius': '4px'}" label="Visualizar informações" severity="success"/> 
                     </div>
                 </div>
