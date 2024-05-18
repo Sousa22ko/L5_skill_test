@@ -1,23 +1,29 @@
 <ng-container *ngIf="locais$ | async as dados; else carregando"> 
-    <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)">
-        <div class="linhaCard">
-            <div class="data">
-                <div class="nome"><p><b>Nome do planeta:</b></p>{{ item.name }}</div>
+    <div class="container mw-100 m-0 p-0" *ngFor="let item of dados.results">
+        <p-card (click)="goto(item.id)">
+            <div class="container m-0 p-0 mw-100">
+                <div class="row mb-2 p-2">
+                    <div class="col-10 row">
+                        <div class="col-4">
+                            <div class="nome"><p><b>Nome do planeta:</b></p>{{ item.name }}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="tipo"><p><b>Tipo de planeta:</b></p>{{ item.type }}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="tipo"><p><b>Dimensão:</b></p>{{ item.dimension }}</div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <p-button [style]="{'border-radius': '4px'}" label="Visualizar informações" severity="success"/> 
+                    </div>
+                </div>
             </div>
-            <div class="data">
-                <div class="tipo"><p><b>Tipo de planeta:</b></p>{{ item.type }}</div>
-            </div>
-            <div class="data">
-                <div class="tipo"><p><b>Dimensão:</b></p>{{ item.dimension }}</div>
-            </div>
-            <div class="botoes">
-                <p-button label="Visualizar informações" severity="success"/> 
-            </div>
-        </div>
-    </p-card>
+        </p-card>
+    </div>
 </ng-container>
 <ng-template #carregando>
-    <div class="loading">
+    <div class="mw-100 text-center">
         <p-progressSpinner ariaLabel="loading" />
     </div>
 </ng-template>

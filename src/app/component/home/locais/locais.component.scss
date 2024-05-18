@@ -1,39 +1,24 @@
-.card {
-    padding: 10px;
+b {
+    color: var(--themecolor);
+}
 
-    b {
-        color: var(--themecolor);
+::ng-deep {
+    .p-card-body, .p-card-content {
+        padding: 0px;
     }
 
-    &:hover {
-        cursor: pointer;
-        transition: all 0.3s;
-        filter: brightness(120%);
-
-        ::ng-deep { // não aplica o brilho aos componentes do card
-            img, .botoes, .data {
-                transition: all 0.3s;
-                filter: brightness(80%);
-            }
-
+    .cardLocal:hover {
+        // nega o aumento do brilho do hover
+        #img, .botoes, .data, #bold, p-button {
+            transition: all 0.3s;
+            filter: brightness(80%);
         }
     }
+}
 
-    .linhaCard {
-        display: grid;
-        grid-template-columns: 3fr 3fr 3fr 3fr;
+.cardLocal:hover {
+    cursor: pointer;
+    transition: all 0.3s;
+    filter: brightness(120%);
     
-        .data, .botoes {
-            align-content: center;
-            padding-right: 30px;
-        }
-    
-        .botoes {
-            grid-column-end: none;
-        }
-    
-        .nome {
-            margin-left: 20px;
-        }
-    }
 }
