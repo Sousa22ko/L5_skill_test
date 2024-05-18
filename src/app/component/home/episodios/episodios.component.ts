@@ -32,7 +32,7 @@ export class EpisodiosComponent implements OnInit {
 
   // vai para a pagina de detalhes do local
   goto(id: number): void {
-    this.router.navigate([`/episodio/${id}`]);
+    this.router.navigate([`/view/episodio/${id}`]);
   }
 
   filtrar(queryParams: string): Observable<IDataPayload<Iepisodio>> {

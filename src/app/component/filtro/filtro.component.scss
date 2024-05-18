@@ -1,34 +1,9 @@
-.filtroAccordion {
-    .filtros {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 20px;
-
-        label {
-            width: 50px;
-        }
-
-        .item:nth-child(1),
-        .item:nth-child(2),
-        .item:nth-child(3) {
-        grid-row: 1 / span 1;
-        }
-
-        .item:nth-child(4),
-        .item:nth-child(5) {
-        grid-row: 2 / span 1;
-        }
-    }
-
-    .actions {
-        display: grid;
-    }
+label {
+    min-width: 85px;
 }
 
-::ng-deep {
-    .p-accordion-content {
-        display: flex;
-        gap: 20px;
+:host ::ng-deep {
+    .p-accordion .p-accordion-header .p-accordion-header-link {
+        color: var(--themecolor);
     }
 }

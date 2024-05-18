@@ -1,23 +1,29 @@
 <ng-container *ngIf="personagens$ | async as dados; else carregando"> 
-    <p-card *ngFor="let item of dados.results" class="card" (click)="goto(item.id)" [style]="{ height: '100px', overflow: 'hidden'}">
-        <div class="linhaCard" >
-            <div>
-                <img [src]="item.image" [alt]="item.name" />
-            </div>
-            <div class="data">
-                <div class="nome"><p><b>Nome do Personagem:</b></p>{{ item.name }}</div>
-            </div>
-            <div class="data">
-                <div class="nome"><p><b>total de aparições:</b></p>{{ item.episode.length }}</div>
-            </div>
-            <div class="botoes" >
-                <p-button severity="success" label="Visualizar informações" /> 
-            </div>
+    <div class="container mw-100 m-0 p-0">
+        <div *ngFor="let item of dados.results" (click)="goto(item.id)" class="row mb-2 cardPersonagem">
+            <p-card [style]="{ height: '100px', overflow: 'hidden'}">
+                <div class="container m-0 p-0 mw-100">
+                    <div class="row align-items-center">
+                        <div class="col-1">
+                            <img id="img" [src]="item.image" [alt]="item.name" />
+                        </div>
+                        <div class="col-5">
+                            <div class="nome"><p><b id="bold">Nome do Personagem:</b></p>{{ item.name }}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="nome"><p><b id="bold">total de aparições:</b></p>{{ item.episode.length }}</div>
+                        </div>
+                        <div class="col-2">
+                            <p-button id="btn" [style]="{'border-radius': '4px'}" severity="success" label="Visualizar informações" /> 
+                        </div>
+                    </div>
+                </div>
+            </p-card>
         </div>
-    </p-card>
+    </div>
 </ng-container>
 <ng-template #carregando>
-    <div class="loading">
+    <div class="mw-100 text-center">
         <p-progressSpinner ariaLabel="loading" />
     </div>
 </ng-template>

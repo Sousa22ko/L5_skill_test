@@ -1,0 +1,101 @@
+<div class="container cnt" *ngIf="data$ | async as data">
+    <div class="row pb-3">
+        <app-view-template *ngIf="tipo == 'personagem'">
+            <div parte1>
+                <img [src]="data.image" [alt]="data.name" />
+            </div>
+            <div parte2>
+                <div>
+                    <p>Meu nome é:</p>
+                    <p><b>{{data.name}}</b></p>
+                </div>
+            </div>
+            <div parte3>
+                <div>
+                    <p>Status: <b>{{data.status}}</b></p>
+                    <p>Espécie: <b>{{data.species}}</b></p>
+                    <p>Gênero: <b>{{data.gender}}</b></p>
+                    <p>Quantidade de episódios: <b>{{data.episode.length}}</b></p>
+                    <p *ngIf="data.type">Tipo: <b>{{data.type}}</b></p>
+                </div>
+            </div>
+            <div parte4>
+                <div class="container m-0 p-0">
+                    <div class="row mb-2">
+                        <p>Planeta de origem:</p>
+                        <p-button 
+                            severity="contrast" [style]="{'border-radius': '4px'}"
+                            [disabled]="data.origin.name == 'unknown'" 
+                            (click)="gotoPlanet(data.origin.url)">
+                            {{data.origin.name}}
+                        </p-button>
+                    </div>
+                    <div class="row">
+                        <p>Localização atual:</p>
+                        <p-button 
+                            severity="contrast" [style]="{'border-radius': '4px'}"
+                            [disabled]="data.location.name == 'unknown'" 
+                            (click)="gotoPlanet(data.location.url)">
+                            {{data.location.name}}
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+        </app-view-template>
+        <app-view-template *ngIf="tipo == 'local'">
+            <div parte1>
+                <div>
+                    <p>Nome do planeta:</p>
+                    <p><b>{{data.name}}</b></p>
+                </div>
+            </div>
+            <div parte2>
+                <div>
+                    <p>Tipo:</p> 
+                    <p><b> {{ data.type}}</b></p>
+                </div>
+            </div>
+            <div parte3>
+                <div>
+                    <p>Dimensão:</p> 
+                    <p><b>{{data.dimension}}</b></p>
+                </div>
+            </div>
+            <div parte4>
+                <div>
+                    <p>Quantidade de moradores:</p>
+                    <p><b>{{data.residents.length}}</b></p>
+                </div>
+            </div>
+        </app-view-template>
+        <app-view-template *ngIf="tipo == 'episodio'">
+            <div parte1>
+                <div>
+                    <p>Nome do episódio:</p>
+                    <p><b>{{data.name}}</b></p>
+                </div>
+            </div>
+            <div parte2>
+                <div>
+                    <p>Data de estréia:</p> 
+                    <p><b> {{ data.air_date | date : 'dd/MM/yy'}}</b></p>
+                </div>
+            </div>
+            <div parte3>
+                <div>
+                    <p>Episódio:</p> 
+                    <p><b>{{data.episode}}</b></p>
+                </div>
+            </div>
+            <div parte4>
+                <div>
+                    <p>Quantidade de personagens:</p>
+                    <p><b>{{data.characters.length}}</b></p>
+                </div>
+            </div>
+        </app-view-template>    
+    </div>
+    <div class="row">
+        <p-button [style]="{'border-radius' :'4px'}" severity="success" (click)="goHome()">Home</p-button>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="viewTemplate">
+    <p-card class="mainCard" [style]="{ width: '600px' , height: '600px', overflow: 'hidden'}" >
+        <div class="container mh-100">
+            <div class="row mh-50">
+                <div class="part col-6 mw-50 mh-100 p-0 m-0 theme">
+                    <ng-content select="[parte1]"></ng-content>
+                </div>
+                <div class="part col-6 mw-50 mh-100 p-0 m-0">
+                    <ng-content select="[parte2]"></ng-content>
+                </div>
+            </div>
+            <div class="row mh-50">
+                <div class="part col-6 mw-50 mh-100 p-0 m-0">
+                    <ng-content select="[parte3]"></ng-content>
+                </div>
+                <div class="part col-6 mw-50 mh-100 p-0 m-0 theme">
+                    <ng-content select="[parte4]"></ng-content>
+                </div>
+            </div>
+        </div>   
+    </p-card>
+</div>

@@ -3,47 +3,27 @@ img {
     max-height: 100px;
 }
 
-.card {
-    padding: 10px;
-
-    b {
-        color: var(--themecolor);
-    }
-
-    &:hover {
-        cursor: pointer;
-        transition: all 0.3s;
-        filter: brightness(120%);
-
-        ::ng-deep { // não aplica o brilho aos componentes do card
-            img, .botoes, .data {
-                transition: all 0.3s;
-                filter: brightness(80%);
-            }
-
-        }
-    }
-
-    .linhaCard {
-        display: grid;
-        grid-template-columns: auto 6fr 3fr;
-    
-        .data, .botoes {
-            align-content: center;
-        }
-    
-        .botoes {
-            grid-column-end: none;
-        }
-    
-        .nome {
-            margin-left: 20px;
-        }
-    }
+b {
+    color: var(--themecolor);
 }
 
 ::ng-deep {
     .p-card-body, .p-card-content {
-        padding: 0px 1rem 0px 0px;
+        padding: 0px;
     }
+
+    .cardPersonagem:hover {
+        // nega o aumento do brilho do hover
+        #img, .botoes, .data, #bold, p-button {
+            transition: all 0.3s;
+            filter: brightness(80%);
+        }
+    }
+}
+
+.cardPersonagem:hover {
+    cursor: pointer;
+    transition: all 0.3s;
+    filter: brightness(120%);
+    
 }

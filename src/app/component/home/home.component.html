@@ -22,7 +22,7 @@
         <div class="noResponse" *ngIf="errorCode == 404">
             Nenhum dado encontrado
         </div>
-        <div class="paginator">
+        <div class="paginator" *ngIf="activeIndex != 0">
             <p-paginator 
                 (onPageChange)="onPageChange($event)" 
                 [rows]="20" 

@@ -2,3 +2,21 @@
     text-align: center;
     font-size: xx-large;
 }
+
+:host ::ng-deep {
+
+    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+        color: var(--themecolor) !important;
+    }
+
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        color: rgba(255, 255, 255, 0.6) ; 
+        &:hover {
+            color: var(--themecolor);
+        }
+    }
+
+    .p-tabview .p-tabview-nav .p-tabview-ink-bar {
+        background-color: var(--themecolor);
+    }
+}

@@ -41,7 +41,7 @@ export class PersonagemComponent implements OnInit{
 
   // vai para a pagina de detalhes do personagem
   goto(id: number): void {
-    this.router.navigate([`/personagem/${id}`]);
+    this.router.navigate([`/view/personagem/${id}`]);
   }
 
   filtrar(queryParams: string): Observable<IDataPayload<Ipersonagem>> {

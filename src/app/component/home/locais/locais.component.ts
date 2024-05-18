@@ -37,7 +37,7 @@ export class LocaisComponent implements OnInit{
 
   // vai para a pagina de detalhes do local
   goto(id: number): void {
-    this.router.navigate([`/local/${id}`]);
+    this.router.navigate([`/view/local/${id}`]);
   }
 
   filtrar(queryParams: string): Observable<IDataPayload<Ilocalizacao>> {
