@@ -81,17 +81,18 @@ export class HomeComponent {
 
   changeTab(event: any) {
     // this.activeIndex = this.activeIndex != 0 ? event.index : 0 
+    let filtroTemporario = this.filtroAtual?.filtro;
     if(event.index == 1) {
-      this.filtroAtual = {pagina: 1};
-      this.onPageChange({page: 1});
+      this.filtroAtual = {pagina: 1, filtro: filtroTemporario};
+      this.onPageChange({page: 0});
     }
     else if(event.index == 2) {
-      this.filtroAtual = {pagina: 2};
-      this.onPageChange({page: 1});
+      this.filtroAtual = {pagina: 2, filtro: filtroTemporario};
+      this.onPageChange({page: 0});
     }
     else if(event.index == 3) {
-      this.filtroAtual = {pagina: 3};
-      this.onPageChange({page: 1});
+      this.filtroAtual = {pagina: 3, filtro: filtroTemporario};
+      this.onPageChange({page: 0});
     }
   }
   
