@@ -13,11 +13,19 @@ import { Iepisodio } from '@models/Iepisodio.model';
 
 import { CommomComponentModule } from '@modules/commomComponent.module';
 
+
+/**
+ * Componente de Dashboard
+ * @description Este é o componente da primeira aba da home, onde é exibido os graficos e dados 
+ * @example
+ * <app-dashboard></app-dashboard>
+ */
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [ 
-    CommomComponentModule, 
+    CommomComponentModule,
+     
     ChartModule 
   ],
   templateUrl: './dashboard.component.html',
@@ -25,17 +33,30 @@ import { CommomComponentModule } from '@modules/commomComponent.module';
 })
 export class DashboardComponent implements OnInit{
   
+  
+  /**
+   * @param personagem$ observable que representa os dados do personagem
+   * @param locais$ observable que representa os dados do locais
+   * @param episodios$ observable que representa os dados do episodios
+   * @param qtdPlanetas$ observable que representa os dados do locais com filtro de planetas
+   * @param pageEpisodios usado para fazer a paginação do gráfico de episodios
+   * @param dataBarras dados do grafico de barras
+   * @param dataDonnut dados do grafico de donnut
+   * @param optionsBarras metadata do grafico de barras
+   * @param optionsDonnut metadata do grafico de donnut
+   * 
+   */
+
   personagens$!: Observable<IDataPayload<Ipersonagem>>;
   locais$!: Observable<IDataPayload<Ilocalizacao>>;
   episodios$!: Observable<IDataPayload<Iepisodio>>;
   qtdPlanetas$!: Observable<IDataPayload<Ilocalizacao>>;
   
-  pageEpisodes: number = 1; // aparentemente a lista deles começa com 1
+  pageEpisodes: number = 1; // a lista da api começa na pagina 1, então se colocar 0 ele vai passar 2x pela mesma informação
   
-  dataBarras: any; // grafico de barras
-  dataDonnut: any; // grafico donnut
+  dataBarras: any; 
+  dataDonnut: any; 
 
-  //configurações extras dos graficos
   optionsBarras: any;
   optionsDonnut: any;
 
@@ -44,9 +65,7 @@ export class DashboardComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    // prepara options
     this.prepareOptionData();
-
 
     this.personagens$ = this.personagemS.getFilter('');
     this.locais$ = this.localizacaoS.getFilter('');
@@ -57,7 +76,9 @@ export class DashboardComponent implements OnInit{
     this.processDataBarras();
   }
 
-  // prepara o grafico
+  /**
+   * @description prepara o grafico de barras
+   */
   processDataBarras(): void{
     let listEpisodes: string[] = [];
     let listPersEpisodes: number[] = [];
@@ -83,12 +104,14 @@ export class DashboardComponent implements OnInit{
     });
   }
 
-    // prepara o grafico
+    /**
+     * @description prepara o grafico donnut
+     */
     processDataDonnut() {
       let values: number [] = []
   
-      // A API do Rick and Morty não possui no modelo rest uma forma de listar eficientemente os generos, então vou ter que filtrar
-      // os 4 separadamente
+      // A API do Rick and Morty não possui no modelo rest uma forma de listar eficientemente 
+      // os generos, então vou ter que filtrar os 4 separadamente
       this.customForkJoin().subscribe(resp => {
         values.push(resp[0].info.count); // quantidade males
         values.push(resp[1].info.count); // quantidade females
@@ -108,7 +131,10 @@ export class DashboardComponent implements OnInit{
       });
     }
 
-  //passa a pagina do grafico de barras
+  /**
+   * @description passa a pagina do grafico de barras
+   * cada pagina contem 20 episodios em sequencia
+   */
   changePageEpisode(op: string): void {
     if(op !== 'up' && op !== 'dw') {
       return;
@@ -122,7 +148,10 @@ export class DashboardComponent implements OnInit{
     this.processDataBarras();
   }
 
-  //espera as 4 requisições de genero receberem as respostas antes de retornar pro processData
+  /**
+   * @description espera as 4 requisições de genero receberem as respostas 
+   * @returns um objeto contendo os dados das 4 requisições de genero
+   */
   customForkJoin (): Observable<any[]> {
     const males = this.personagemS.getFilter("gender=Male");
     const females = this.personagemS.getFilter("gender=Female");
@@ -131,17 +160,19 @@ export class DashboardComponent implements OnInit{
     return forkJoin([males, females, genderless, unknown]);
   }
 
-  // carrega os dados de options dos 2 graficos
+  /**
+   * @description carrega os dados de options dos 2 graficos
+   */
   prepareOptionData(): void {
 
     this.optionsDonnut =  {
       cutout: '60%',
       plugins: {
-          legend: {
-              labels: {
-                  color: "#FFF"
-              }
+        legend: {
+          labels: {
+            color: "#FFF"
           }
+        }
       }
     };
 

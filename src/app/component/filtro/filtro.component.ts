@@ -2,6 +2,12 @@ import { Component, input, output } from '@angular/core';
 import { IeventFilter } from '@models/IeventFilter.model';
 import { AdvancedComponentModule } from '@modules/advancedComponent.module';
 
+/**
+ * Componente de filtro
+ * @description Este componente é o filtro utilizado na aba de personagens, locais e episódios presente na home.component
+ * @example
+ * <app-filtros></app-filtros>
+ */
 @Component({
   selector: 'app-filtro',
   standalone: true,
@@ -11,13 +17,12 @@ import { AdvancedComponentModule } from '@modules/advancedComponent.module';
 })
 export class FiltroComponent {
 
-  // qual das abas está aberto
+  /**
+   * @param activeIndex representa qual aba está aberta. esse dado é enviado via input da home
+   * @param pesquisar output que envia informação sobre o filtro para a home.component, que por sua vez envia para um dos componentes filhos
+   */
   activeIndex = input(0);
-
-  // emite o evento de apertar no botão de pesquisa do filtro
-  // chamando o metodo pesquisar do home.component.ts
   pesquisar = output<IeventFilter>();
-
 
   // --------------- campos de personagem ----------------
   nomeFiltro: string = '';
@@ -50,9 +55,10 @@ export class FiltroComponent {
 
   //------------------------------------------------------
 
-  // ação chamada ao apertar o botão de limpar filtro
-  // todos os campos do filtro da aba atual são limpas
-  // os campos dos filtros das outras abas não são limpas
+  /**
+   * 
+   * @description limpa o filtro atual e automaticamente reseta a lista para o padrão, os outros campos de filtro não são limpos
+   */
   limparFiltros() {
     if(this.activeIndex() == 1) {
       let reset = (this.nomeFiltro.length > 0) || (this.typeFiltro.length > 0) || (this.specieFiltro.length > 0) || !!this.genderFiltro || !!this.statusFiltro
@@ -98,7 +104,9 @@ export class FiltroComponent {
     }
   }
 
-  // esse metodo prepara a query param e emite o evento que chama o pesquisar da home.component.ts
+  /**
+   * @description esse metodo prepara a query param e emite o evento que chama o pesquisar da home.component.ts
+   */
   filtrar() {
     if(this.activeIndex() == 1){
       let queryParams = '';

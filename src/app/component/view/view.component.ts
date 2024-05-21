@@ -16,6 +16,12 @@ import { ViewTemplateComponent } from './view-template/view-template.component';
 })
 export class ViewComponent implements OnInit{
 
+  /**
+   * @param id id da entidade pesquisada
+   * @param tipo representa um dos 3 tipos possiveis para a tela de visualização (personagem, locais ou episódios)
+   * @param data$ o dado retornado do respectivo service a depender do tipo de entidade
+   */
+
   id: number = 0;
   tipo: string = '';
   data$!: Observable<any>;
@@ -56,6 +62,7 @@ export class ViewComponent implements OnInit{
     let parts = url.split('/');
     this.redirect.navigate([`/view/local/${parts[parts.length-1]}`]);
   }
+
   goHome() {
     this.redirect.navigate([`/home`]);
   }
